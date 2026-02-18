@@ -1,8 +1,8 @@
-import { cn } from '@/utilities/cn'
-import React from 'react'
 import { RichText } from '@/components/RichText'
-import type { DefaultDocumentIDType } from 'payload'
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
+import { cn } from '@/utilities/cn'
+import type { DefaultDocumentIDType } from 'payload'
+import React from 'react'
 
 import { CMSLink } from '../../components/Link'
 

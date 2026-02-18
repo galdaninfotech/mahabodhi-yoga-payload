@@ -1,18 +1,18 @@
 import type { CollectionConfig } from 'payload'
 
-import { Banner } from '@/blocks/Banner/config'
-import { Carousel } from '@/blocks/Carousel/config'
-import { ThreeItemGrid } from '@/blocks/ThreeItemGrid/config'
-import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { adminOnly } from '@/access/adminOnly'
+import { adminOrPublishedStatus } from '@/access/adminOrPublishedStatus'
+import { AboutUs } from '@/blocks/AboutUs/config'
 import { Archive } from '@/blocks/ArchiveBlock/config'
+import { Banner } from '@/blocks/Banner/config'
 import { CallToAction } from '@/blocks/CallToAction/config'
+import { Carousel } from '@/blocks/Carousel/config'
 import { Content } from '@/blocks/Content/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
-import { hero } from '@/fields/hero'
-import { slugField } from 'payload'
-import { adminOrPublishedStatus } from '@/access/adminOrPublishedStatus'
+import { ThreeItemGrid } from '@/blocks/ThreeItemGrid/config'
+import { hero } from '@/heros/config'
+import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -20,7 +20,22 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { revalidatePage, revalidateDelete } from './hooks/revalidatePage'
+import { slugField } from 'payload'
+import { Accordion } from '../../blocks/Accordion/config'
+import { Address } from '../../blocks/Address/config'
+import { BlockQuote } from '../../blocks/BlockQuote/config'
+import { ClientTestimonials } from '../../blocks/ClientTestimonials/config'
+import { ContactForm } from '../../blocks/ContactForm/config'
+import { ContentWithMedia } from '../../blocks/ContentWithMedia/config'
+import { Gallery } from '../../blocks/Gallery/config'
+import { ListOne } from '../../blocks/ListOne/config'
+import { ListTwo } from '../../blocks/ListTwo/config'
+import { NewsletterSubscription } from '../../blocks/NewsletterSubscription/config'
+import { ParagraphOne } from '../../blocks/ParagraphOne/config'
+import { RecentPosts } from '../../blocks/RecentPosts/config'
+import { RegistrationForm } from '../../blocks/RegistrationForm/config'
+import { YouTubeVideoBlock } from '../../blocks/YouTubeVideo/config'
+import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -96,6 +111,21 @@ export const Pages: CollectionConfig = {
                 ThreeItemGrid,
                 Banner,
                 FormBlock,
+                ContentWithMedia,
+                RecentPosts,
+                ClientTestimonials,
+                NewsletterSubscription,
+                ContactForm,
+                ListOne,
+                ListTwo,
+                ParagraphOne,
+                BlockQuote,
+                Address,
+                RegistrationForm,
+                AboutUs,
+                Accordion,
+                Gallery,
+                YouTubeVideoBlock,
               ],
               required: true,
             },

@@ -9,6 +9,8 @@ import {
 
 export const FormBlock: Block = {
   slug: 'formBlock',
+  imageURL: '/images/blocks/formBlock.jpg',
+  imageAltText: 'Thumbnail for formBlock block',
   interfaceName: 'FormBlock',
   fields: [
     {

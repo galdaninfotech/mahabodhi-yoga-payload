@@ -1,19 +1,22 @@
-import type { Form } from '@/payload-types'
+import type { Form, Media } from '@/payload-types'
 
 import { RequiredDataFromCollectionSlug } from 'payload'
 
 type ProductArgs = {
   contactForm: Form
+  heroImage: Media
 }
 
 export const contactPageData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
   contactForm,
+  heroImage,
 }) => {
   return {
     slug: 'contact',
     _status: 'published',
     hero: {
       type: 'none',
+      media: heroImage.id,
     },
     layout: [
       {

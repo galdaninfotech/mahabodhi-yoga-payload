@@ -1,0 +1,283 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - button "Open Menu" [ref=e4] [cursor=pointer]:
+      - generic "Open" [ref=e6]:
+        - img [ref=e7]
+    - generic [ref=e9]:
+      - complementary [ref=e10]:
+        - navigation [ref=e12]:
+          - generic [ref=e13]:
+            - button "Collections" [ref=e14] [cursor=pointer]:
+              - generic [ref=e15]: Collections
+              - img [ref=e17]
+            - link "Posts" [ref=e22] [cursor=pointer]:
+              - /url: /admin/collections/posts
+              - generic [ref=e23]: Posts
+          - generic [ref=e24]:
+            - button "Globals" [ref=e25] [cursor=pointer]:
+              - generic [ref=e26]: Globals
+              - img [ref=e28]
+            - generic [ref=e32]:
+              - link "Header" [ref=e33] [cursor=pointer]:
+                - /url: /admin/globals/header
+                - generic [ref=e34]: Header
+              - link "Footer" [ref=e35] [cursor=pointer]:
+                - /url: /admin/globals/footer
+                - generic [ref=e36]: Footer
+              - link "SambodhiRetreatCentre" [ref=e37] [cursor=pointer]:
+                - /url: /admin/globals/sambodhiRetreatCentre
+                - generic [ref=e38]: SambodhiRetreatCentre
+          - generic [ref=e39]:
+            - button "Users" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Users
+              - img [ref=e43]
+            - link "Users" [ref=e48] [cursor=pointer]:
+              - /url: /admin/collections/users
+              - generic [ref=e49]: Users
+          - generic [ref=e50]:
+            - button "Content" [ref=e51] [cursor=pointer]:
+              - generic [ref=e52]: Content
+              - img [ref=e54]
+            - generic [ref=e58]:
+              - link "Pages" [ref=e59] [cursor=pointer]:
+                - /url: /admin/collections/pages
+                - generic [ref=e60]: Pages
+              - link "Categories" [ref=e61] [cursor=pointer]:
+                - /url: /admin/collections/categories
+                - generic [ref=e62]: Categories
+              - link "Media" [ref=e63] [cursor=pointer]:
+                - /url: /admin/collections/media
+                - generic [ref=e64]: Media
+              - link "Forms" [ref=e65] [cursor=pointer]:
+                - /url: /admin/collections/forms
+                - generic [ref=e66]: Forms
+              - link "Form Submissions" [ref=e67] [cursor=pointer]:
+                - /url: /admin/collections/form-submissions
+                - generic [ref=e68]: Form Submissions
+          - generic [ref=e69]:
+            - button "Newsletter Management" [ref=e70] [cursor=pointer]:
+              - generic [ref=e71]: Newsletter Management
+              - img [ref=e73]
+            - generic [ref=e77]:
+              - link "Newsletters" [ref=e78] [cursor=pointer]:
+                - /url: /admin/collections/newsletters
+                - generic [ref=e80]: Newsletters
+              - link "Subscribers" [ref=e81] [cursor=pointer]:
+                - /url: /admin/collections/subscribers
+                - generic [ref=e82]: Subscribers
+              - link "Subscriber Groups" [ref=e83] [cursor=pointer]:
+                - /url: /admin/collections/subscriber-groups
+                - generic [ref=e84]: Subscriber Groups
+              - link "Newsletter Logs" [ref=e85] [cursor=pointer]:
+                - /url: /admin/collections/newsletter-logs
+                - generic [ref=e86]: Newsletter Logs
+          - generic [ref=e87]:
+            - button "Ecommerce" [ref=e88] [cursor=pointer]:
+              - generic [ref=e89]: Ecommerce
+              - img [ref=e91]
+            - generic [ref=e95]:
+              - link "Products" [ref=e96] [cursor=pointer]:
+                - /url: /admin/collections/products
+                - generic [ref=e97]: Products
+              - link "Carts" [ref=e98] [cursor=pointer]:
+                - /url: /admin/collections/carts
+                - generic [ref=e99]: Carts
+              - link "Orders" [ref=e100] [cursor=pointer]:
+                - /url: /admin/collections/orders
+                - generic [ref=e101]: Orders
+              - link "Transactions" [ref=e102] [cursor=pointer]:
+                - /url: /admin/collections/transactions
+                - generic [ref=e103]: Transactions
+          - generic [ref=e104]:
+            - button "System" [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]: System
+              - img [ref=e108]
+            - link "Payload Jobs" [ref=e113] [cursor=pointer]:
+              - /url: /admin/collections/payload-jobs
+              - generic [ref=e114]: Payload Jobs
+          - generic [ref=e115]:
+            - button "Admin" [ref=e116] [cursor=pointer]:
+              - generic [ref=e117]: Admin
+              - img [ref=e119]
+            - link "Settings" [ref=e124] [cursor=pointer]:
+              - /url: /admin/globals/settings
+              - generic [ref=e125]: Settings
+          - link "Log out" [ref=e127] [cursor=pointer]:
+            - /url: /admin/logout
+            - img [ref=e128]
+      - generic [ref=e132]:
+        - banner [ref=e133]:
+          - generic [ref=e136]:
+            - navigation [ref=e138]:
+              - link [ref=e139] [cursor=pointer]:
+                - /url: /admin
+                - generic "Dashboard" [ref=e140]:
+                  - img [ref=e141]
+              - generic [ref=e144]: /
+              - link "Newsletters" [ref=e145] [cursor=pointer]:
+                - /url: /admin/collections/newsletters
+                - generic [ref=e146]: Newsletters
+              - generic [ref=e147]: /
+              - generic [ref=e148]: "28"
+            - link "Account" [ref=e149] [cursor=pointer]:
+              - /url: /admin/account
+              - img "yas" [ref=e150]
+        - generic [ref=e152]:
+          - heading "28" [level=1] [ref=e153]
+          - list [ref=e156]:
+            - generic "Edit" [ref=e157]:
+              - generic:
+                - generic:
+                  - generic: Edit
+            - link "Versions" [ref=e158] [cursor=pointer]:
+              - /url: /admin/collections/newsletters/28/versions
+              - generic:
+                - generic:
+                  - generic:
+                    - text: Versions
+                    - generic: "1"
+            - link "API" [ref=e159] [cursor=pointer]:
+              - /url: /admin/collections/newsletters/28/api
+              - generic:
+                - generic:
+                  - generic: API
+        - main [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e163]:
+              - list [ref=e165]:
+                - listitem [ref=e166]:
+                  - 'generic "Status: Draft" [ref=e167]':
+                    - generic [ref=e168]:
+                      - generic [ref=e169]: "Status:"
+                      - text: Draft
+                - listitem
+                - listitem "January 31st 2026, 1:09 PM" [ref=e170]:
+                  - paragraph [ref=e171]: "Last Modified:"
+                  - paragraph [ref=e172]: January 31st 2026, 1:09 PM
+                - listitem "January 31st 2026, 1:09 PM" [ref=e173]:
+                  - paragraph [ref=e174]: "Created:"
+                  - paragraph [ref=e175]: January 31st 2026, 1:09 PM
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - button "Send" [disabled] [ref=e180]
+                  - button "Live Preview" [ref=e181] [cursor=pointer]:
+                    - img [ref=e182]
+                  - link "Preview" [ref=e185] [cursor=pointer]:
+                    - /url: /next/preview?slug=&collection=newsletters&path=undefined%2F&previewSecret=demo-draft-secret
+                    - img [ref=e186]
+                  - generic [ref=e189]:
+                    - button "Publish changes" [ref=e190] [cursor=pointer]:
+                      - generic:
+                        - generic: Publish changes
+                    - button [ref=e193] [cursor=pointer]:
+                      - img [ref=e194]
+                - button [ref=e198] [cursor=pointer]
+            - generic [ref=e206]:
+              - generic [ref=e209]:
+                - generic [ref=e210]:
+                  - generic [ref=e211]:
+                    - text: Title
+                    - generic [ref=e212]: "*"
+                  - textbox "Title *" [ref=e214]
+                - generic [ref=e215]:
+                  - generic [ref=e217]:
+                    - button "Content" [ref=e218] [cursor=pointer]
+                    - button "Sent History" [ref=e219] [cursor=pointer]
+                  - generic [ref=e222]:
+                    - generic [ref=e223]:
+                      - generic [ref=e224]: Hero Image
+                      - generic [ref=e227]:
+                        - generic [ref=e228]:
+                          - button "Create New" [ref=e229] [cursor=pointer]:
+                            - generic:
+                              - generic: Create New
+                          - generic [ref=e230]: Or
+                          - button "Choose from existing" [ref=e231] [cursor=pointer]:
+                            - generic:
+                              - generic: Choose from existing
+                        - paragraph [ref=e232]: Or Drag and drop a file
+                    - generic [ref=e234]:
+                      - generic [ref=e235]:
+                        - button "add dropdown" [ref=e237] [cursor=pointer]:
+                          - img [ref=e238]
+                        - button "blocks dropdown" [ref=e242] [cursor=pointer]:
+                          - img [ref=e243]
+                        - button "text dropdown" [ref=e250] [cursor=pointer]:
+                          - img [ref=e251]
+                        - generic [ref=e255]:
+                          - button [ref=e256] [cursor=pointer]:
+                            - img [ref=e257]
+                          - button [ref=e259] [cursor=pointer]:
+                            - img [ref=e260]
+                        - generic [ref=e263]:
+                          - button [ref=e264] [cursor=pointer]:
+                            - img [ref=e265]
+                          - button [ref=e267] [cursor=pointer]:
+                            - img [ref=e268]
+                          - button [ref=e270] [cursor=pointer]:
+                            - img [ref=e271]
+                        - button [ref=e276] [cursor=pointer]:
+                          - img [ref=e277]
+                      - generic [ref=e279]:
+                        - generic [ref=e281]:
+                          - textbox [ref=e282]:
+                            - paragraph [ref=e283]
+                          - paragraph: Start typing, or press '/' for commands...
+                          - button "Drag to move" [ref=e284]
+                          - button "Add block" [ref=e286] [cursor=pointer]
+                          - generic [ref=e289]:
+                            - button "Edit link" [ref=e290] [cursor=pointer]:
+                              - img [ref=e291]
+                            - button "Remove link" [ref=e293] [cursor=pointer]:
+                              - img [ref=e294]
+                        - button "Insert Paragraph" [ref=e296]
+                    - generic [ref=e298]:
+                      - generic [ref=e299]: Upload PDF
+                      - generic [ref=e302]:
+                        - generic [ref=e303]:
+                          - button "Create New" [ref=e304] [cursor=pointer]:
+                            - generic:
+                              - generic: Create New
+                          - generic [ref=e305]: Or
+                          - button "Choose from existing" [ref=e306] [cursor=pointer]:
+                            - generic:
+                              - generic: Choose from existing
+                        - paragraph [ref=e307]: Or Drag and drop a file
+              - generic [ref=e311]:
+                - generic [ref=e312]:
+                  - generic [ref=e313]: Published At
+                  - generic [ref=e315]:
+                    - generic:
+                      - img
+                    - textbox [ref=e319]
+                - generic [ref=e320]:
+                  - generic [ref=e321]: Authors
+                  - generic [ref=e323]:
+                    - generic [ref=e325]:
+                      - log [ref=e327]
+                      - generic [ref=e328]:
+                        - generic [ref=e330]:
+                          - generic [ref=e331]: Select a value
+                          - combobox [ref=e333]
+                        - button [ref=e335] [cursor=pointer]:
+                          - img [ref=e336]
+                    - status [ref=e338]
+                    - button "Add new User" [ref=e340] [cursor=pointer]:
+                      - img [ref=e341]
+                - generic [ref=e343]:
+                  - generic [ref=e344]:
+                    - generic [ref=e345]: Slug
+                    - button "Unlock" [ref=e346] [cursor=pointer]:
+                      - generic:
+                        - generic: Unlock
+                  - textbox "Slug" [disabled] [ref=e349]
+        - status [ref=e350]
+  - status [ref=e351]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e357] [cursor=pointer]:
+    - img [ref=e358]
+  - alert [ref=e361]
+```

@@ -80,6 +80,9 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
             {
               name: 'gallery',
               type: 'array',
+              admin: {
+                initCollapsed: true,
+              },
               minRows: 1,
               fields: [
                 {

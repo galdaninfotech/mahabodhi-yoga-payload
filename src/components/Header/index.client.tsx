@@ -23,11 +23,13 @@ export function HeaderClient({ header }: Props) {
   return (
     <div className="relative z-20 border-b">
       <nav className="flex items-center md:items-end justify-between container pt-2">
+        
         <div className="block flex-none md:hidden">
           <Suspense fallback={null}>
             <MobileMenu menu={menu} />
           </Suspense>
         </div>
+
         <div className="flex w-full items-end justify-between">
           <div className="flex w-full items-end gap-6 md:w-1/3">
             <Link className="flex w-full items-center justify-center pt-4 pb-4 md:w-auto" href="/">
@@ -35,26 +37,45 @@ export function HeaderClient({ header }: Props) {
             </Link>
             {menu.length ? (
               <ul className="hidden gap-4 text-sm md:flex md:items-center">
-                {menu.map((item) => (
-                  <li key={item.id}>
-                    <CMSLink
-                      {...item.link}
-                      size={'clear'}
-                      className={cn('relative navLink', {
-                        active:
-                          item.link.url && item.link.url !== '/'
-                            ? pathname.includes(item.link.url)
-                            : false,
-                      })}
-                      appearance="nav"
-                    />
-                  </li>
-                ))}
+                {menu.map((item) => {
+                  const hasSubMenu = item.subMenuItems && item.subMenuItems.length > 0
+                  
+                  return (
+                    <li key={item.id} className={cn('relative h-full py-4', hasSubMenu && 'group')}>
+                      <CMSLink
+                        {...item.link}
+                        size={'clear'}
+                        className={cn('relative navLink font-oswald', {
+                          active:
+                            item.link.url && item.link.url !== '/'
+                              ? pathname.includes(item.link.url)
+                              : false,
+                        })}
+                        appearance="nav"
+                      />
+                      
+                      {hasSubMenu && (
+                        <ul className="absolute left-0 top-full hidden min-w-50 flex-col bg-white border border-neutral-200 shadow-lg dark:bg-black dark:border-neutral-700 group-hover:flex z-50">
+                          {item.subMenuItems?.map((subItem) => (
+                            <li key={subItem.id} className="border-b last:border-0 border-neutral-100 dark:border-neutral-800">
+                              <CMSLink
+                                {...subItem.link}
+                                className="block w-full px-4 py-3 hover:bg-neutral-50 dark:hover:bg-neutral-900 whitespace-nowrap"
+                                size="clear"
+                                appearance="link"
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
             ) : null}
           </div>
 
-          <div className="flex justify-end md:w-1/3 gap-4">
+          <div className="flex justify-end md:w-1/3 gap-4 pb-4">
             <Suspense fallback={<OpenCartButton />}>
               <Cart />
             </Suspense>

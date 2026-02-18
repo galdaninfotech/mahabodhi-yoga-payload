@@ -8,6 +8,8 @@ import {
 
 export const Banner: Block = {
   slug: 'banner',
+  imageURL: '/images/blocks/banner.jpg',
+  imageAltText: 'Thumbnail for banner block',
   fields: [
     {
       name: 'style',

@@ -45,6 +45,7 @@
   --breakpoint-2xl: 86rem;
   --font-mono: var(--font-geist-mono);
   --font-sans: var(--font-geist-sans);
+  --font-oswald: var(--font-oswald-sans);
 }
 
 @layer utilities {
@@ -228,3 +229,83 @@ input,
 button {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
+
+
+
+/*  */
+.prose h2 {
+  color: #1a202c;
+  font-size: 2rem;
+  /* Add more styles as needed */
+}
+/* From Old repo */
+
+h1 {
+  font-size: 48px;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-optical-sizing: auto;
+}
+p, ol.instructors {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 15px;
+  line-height: 1.875;
+  font-weight: 400;
+  color: #636363;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+  text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+.heading-section .subheading {
+  font-family: "Pinyon Script", serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+  display: block;
+  margin-bottom: -10px;
+  color: #d19a4a;
+  text-transform: capitalize;
+}
+
+/* Richtext */
+.heading-section h2, .heading-section .h2 {
+  margin-top: 60px;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    margin-left: 12px;
+  }
+.heading-section.aos-init.aos-animate ol.list-number li {
+  background-color: rgb(232, 232, 232);
+}
+.heading-section.aos-init.aos-animate ul.list-number li {
+  background-color: rgb(232, 232, 232);
+  list-style: circle;
+}
+.ftco-about-section ul li {
+    font-family: "Big Shoulders Display", sans-serif;
+    list-style: circle;
+    color: #000000;
+    margin-bottom: 6px;
+    margin-left:20px;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+
+/* Pages */
+.section .subheading {
+  font-family: Pinyon Script,serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+  display: block;
+  margin-bottom: -10px;
+  color: #d19a4a;
+  text-transform: capitalize;
+}
+
+

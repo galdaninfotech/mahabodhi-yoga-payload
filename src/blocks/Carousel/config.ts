@@ -2,6 +2,8 @@ import type { Block } from 'payload'
 
 export const Carousel: Block = {
   slug: 'carousel',
+  imageURL: '/images/blocks/carousel.jpg',
+  imageAltText: 'Thumbnail for carousel block',
   fields: [
     {
       name: 'populateBy',

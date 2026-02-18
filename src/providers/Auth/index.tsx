@@ -68,7 +68,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = useCallback<Login>(async (args) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/login`, {
+      const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || ''
+      const res = await fetch(`${serverUrl}/api/users/login`, {
         body: JSON.stringify({
           email: args.email,
           password: args.password,
@@ -80,17 +81,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         method: 'POST',
       })
 
+      const data = await res.json()
+
       if (res.ok) {
-        const { errors, user } = await res.json()
-        if (errors) throw new Error(errors[0].message)
-        setUser(user)
+        setUser(data.user)
         setStatus('loggedIn')
-        return user
+        return data.user
+      }
+
+      if (data.errors) {
+        throw new Error(data.errors[0].message)
       }
 
       throw new Error('Invalid login')
-    } catch (e) {
-      throw new Error('An error occurred while attempting to login.')
+    } catch (e: any) {
+      console.error(e)
+      throw new Error(e.message || 'An error occurred while attempting to login.')
     }
   }, [])
 

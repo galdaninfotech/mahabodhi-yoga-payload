@@ -6,6 +6,23 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ThreeItemGridBlock } from '@/blocks/ThreeItemGrid/Component'
+
+import { AboutUsBlock as AboutUsBlockComponent } from '@/blocks/AboutUs/Component'
+import { Accordion } from '@/blocks/Accordion/Component'
+import { Address } from '@/blocks/Address/Component'
+import { BlockQuote } from '@/blocks/BlockQuote/Component'
+import { ClientTestimonials } from '@/blocks/ClientTestimonials/Component'
+import { ContactForm } from '@/blocks/ContactForm/Component'
+import { ContentWithMedia } from '@/blocks/ContentWithMedia/Component'
+import { Gallery } from '@/blocks/Gallery/Component'
+import { ListOne } from '@/blocks/ListOne/Component'
+import { ListTwo } from '@/blocks/ListTwo/Component'
+import { NewsletterSubscription } from '@/blocks/NewsletterSubscription/Component'
+import { ParagraphOne } from '@/blocks/ParagraphOne/Component'
+import { RecentPosts } from '@/blocks/RecentPosts/Components'
+import { RegistrationForm } from '@/blocks/RegistrationForm/Component'
+import { YouTubeVideoComponent } from '@/blocks/YouTubeVideo/Component'
+
 import { toKebabCase } from '@/utilities/toKebabCase'
 import React, { Fragment } from 'react'
 
@@ -20,6 +37,21 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   threeItemGrid: ThreeItemGridBlock,
+  contentWithMedia: ContentWithMedia,
+  recentPosts: RecentPosts,
+  clientTestimonials: ClientTestimonials,
+  newsletterSubscription: NewsletterSubscription,
+  contactForm: ContactForm,
+  listOne: ListOne,
+  listTwo: ListTwo,
+  paragraphOne: ParagraphOne,
+  blockQuote: BlockQuote,
+  address: Address,
+  registrationForm: RegistrationForm,
+  aboutUs: AboutUsBlockComponent,
+  accordion: Accordion,
+  gallery: Gallery,
+  youTubeVideo: YouTubeVideoComponent,
 }
 
 export const RenderBlocks: React.FC<{

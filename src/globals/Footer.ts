@@ -9,7 +9,25 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'navItems',
+      name: 'about',
+      type: 'group',
+      fields: [
+        {
+            name: 'title',
+            type: 'text',
+        },
+        {
+            name: 'description',
+            type: 'textarea',
+        },
+      ],
+    },
+    {
+      name: 'newsLetter',
+      type: 'textarea',
+    },
+    {
+      name: 'moreLinks',
       type: 'array',
       fields: [
         link({
@@ -17,6 +35,10 @@ export const Footer: GlobalConfig = {
         }),
       ],
       maxRows: 6,
+      admin: {
+        initCollapsed: true,
+      },
     },
+
   ],
 }

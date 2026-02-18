@@ -63,6 +63,8 @@ const columnFields: Field[] = [
 
 export const Content: Block = {
   slug: 'content',
+  imageURL: '/images/blocks/content.jpg',
+  imageAltText: 'Thumbnail for content block',
   interfaceName: 'ContentBlock',
   fields: [
     {

@@ -2,6 +2,8 @@ import type { Block } from 'payload'
 
 export const Code: Block = {
   slug: 'code',
+  imageURL: '/images/blocks/code.jpg',
+  imageAltText: 'Thumbnail for code block',
   interfaceName: 'CodeBlock',
   fields: [
     {

@@ -2,6 +2,8 @@ import type { Block } from 'payload'
 
 export const ThreeItemGrid: Block = {
   slug: 'threeItemGrid',
+  imageURL: '/images/blocks/threeItemGrid.jpg',
+  imageAltText: 'Thumbnail for threeItemGrid block',
   fields: [
     {
       name: 'products',
