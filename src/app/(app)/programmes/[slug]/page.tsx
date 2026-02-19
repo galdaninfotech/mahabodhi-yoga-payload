@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   }
 }
 
-export default async function ProductPage({ params }: Args) {
+export default async function ProgrammePage({ params }: Args) {
   const { slug } = await params
   const product = await queryProductBySlug({ slug })
 
@@ -119,9 +119,9 @@ export default async function ProductPage({ params }: Args) {
       />
       <div className="container pt-8 pb-8">
         <Button asChild variant="ghost" className="mb-4">
-          <Link href="/shop">
+          <Link href="/programmes">
             <ChevronLeftIcon />
-            All products
+            All programmes
           </Link>
         </Button>
         <div className="flex flex-col gap-12 rounded-lg border p-8 md:py-12 lg:flex-row lg:gap-8 bg-primary-foreground">
@@ -145,7 +145,7 @@ export default async function ProductPage({ params }: Args) {
 
       {relatedProducts.length ? (
         <div className="container">
-          <RelatedProducts products={relatedProducts as Product[]} />
+          <RelatedProgrammes products={relatedProducts as Product[]} />
         </div>
       ) : (
         <></>
@@ -154,19 +154,19 @@ export default async function ProductPage({ params }: Args) {
   )
 }
 
-function RelatedProducts({ products }: { products: Product[] }) {
+function RelatedProgrammes({ products }: { products: Product[] }) {
   if (!products.length) return null
 
   return (
     <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
+      <h2 className="mb-4 text-2xl font-bold">Related Programmes</h2>
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {products.map((product) => (
           <li
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
             key={product.id}
           >
-            <Link className="relative h-full w-full" href={`/products/${product.slug}`}>
+            <Link className="relative h-full w-full" href={`/programmes/${product.slug}`}>
               <GridTileImage
                 label={{
                   amount: product.priceInUSD!,

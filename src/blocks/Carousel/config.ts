@@ -30,7 +30,7 @@ export const Carousel: Block = {
       label: 'Collections To Show',
       options: [
         {
-          label: 'Products',
+          label: 'Programmes',
           value: 'products',
         },
       ],

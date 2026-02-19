@@ -27,7 +27,7 @@ export const Search: React.FC<Props> = ({ className }) => {
       newParams.delete('q')
     }
 
-    router.push(createUrl('/shop', newParams))
+    router.push(createUrl('/programmes', newParams))
   }
 
   return (
@@ -38,7 +38,7 @@ export const Search: React.FC<Props> = ({ className }) => {
         defaultValue={searchParams?.get('q') || ''}
         key={searchParams?.get('q')}
         name="search"
-        placeholder="Search for products..."
+        placeholder="Search for programmes..."
         type="text"
       />
       <div className="absolute right-0 top-0 mr-3 flex h-full items-center">

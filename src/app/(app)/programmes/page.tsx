@@ -5,8 +5,8 @@ import { getPayload } from 'payload'
 import React from 'react'
 
 export const metadata = {
-  description: 'Search for products in the store.',
-  title: 'Shop',
+  description: 'Search for programmes in the store.',
+  title: 'Programmes',
 }
 
 type SearchParams = { [key: string]: string | string[] | undefined }
@@ -15,7 +15,7 @@ type Props = {
   searchParams: Promise<SearchParams>
 }
 
-export default async function ShopPage({ searchParams }: Props) {
+export default async function ProgrammesPage({ searchParams }: Props) {
   const { q: searchValue, sort, category } = await searchParams
   const payload = await getPayload({ config: configPromise })
 
@@ -80,14 +80,14 @@ export default async function ShopPage({ searchParams }: Props) {
       {searchValue ? (
         <p className="mb-4">
           {products.docs?.length === 0
-            ? 'There are no products that match '
+            ? 'There are no programmes that match '
             : `Showing ${products.docs.length} ${resultsText} for `}
           <span className="font-bold">&quot;{searchValue}&quot;</span>
         </p>
       ) : null}
 
       {!searchValue && products.docs?.length === 0 && (
-        <p className="mb-4">No products found. Please try different filters.</p>
+        <p className="mb-4">No programmes found. Please try different filters.</p>
       )}
 
       {products?.docs.length > 0 ? (

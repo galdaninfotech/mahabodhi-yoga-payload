@@ -302,8 +302,8 @@ export const headerData = async ({ req }: { req: PayloadRequest }): Promise<Part
       {
         link: {
           type: 'custom',
-          label: 'Shop',
-          url: '/shop',
+          label: 'Programmes',
+          url: '/programmes',
         },
       },
       {

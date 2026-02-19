@@ -12,7 +12,7 @@ export const ThreeItemGrid: Block = {
         isSortable: true,
       },
       hasMany: true,
-      label: 'Products to show',
+      label: 'Programmes to show',
       maxRows: 3,
       minRows: 3,
       relationTo: 'products',
