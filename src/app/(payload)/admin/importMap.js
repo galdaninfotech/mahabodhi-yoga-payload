@@ -28,7 +28,8 @@ import { VariantOptionsSelector as VariantOptionsSelector_b91672ccd6e8b071c11142
 import { PriceCell as PriceCell_e27bf7b8cc50640dcdd584767b8eac3c } from '@payloadcms/plugin-ecommerce/client'
 import { PriceInput as PriceInput_b91672ccd6e8b071c11142ab941fedfb } from '@payloadcms/plugin-ecommerce/rsc'
 import { default as default_e27ee3dc7802efe9f3f32f78d25167f8 } from '@/admin/components/PruneSubscribersButton'
-import { BeforeDashboard as BeforeDashboard_1a7510af427896d367a49dbf838d2de6 } from '@/components/BeforeDashboard'
+import { default as default_da769d5b2ddd63826bee52681defdcfa } from '@/admin/components/CustomLogo'
+import { default as default_e49c922f52c98fe8ce88218e8b7fff60 } from '@/components/AdminHelp'
 import { BeforeLogin as BeforeLogin_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
 import { CollectionCards as CollectionCards_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 
@@ -63,7 +64,8 @@ export const importMap = {
   "@payloadcms/plugin-ecommerce/client#PriceCell": PriceCell_e27bf7b8cc50640dcdd584767b8eac3c,
   "@payloadcms/plugin-ecommerce/rsc#PriceInput": PriceInput_b91672ccd6e8b071c11142ab941fedfb,
   "@/admin/components/PruneSubscribersButton#default": default_e27ee3dc7802efe9f3f32f78d25167f8,
-  "@/components/BeforeDashboard#BeforeDashboard": BeforeDashboard_1a7510af427896d367a49dbf838d2de6,
+  "@/admin/components/CustomLogo#default": default_da769d5b2ddd63826bee52681defdcfa,
+  "@/components/AdminHelp#default": default_e49c922f52c98fe8ce88218e8b7fff60,
   "@/components/BeforeLogin#BeforeLogin": BeforeLogin_8a7ab0eb7ab5c511aba12e68480bfe5e,
   "@payloadcms/ui/rsc#CollectionCards": CollectionCards_ab83ff7e88da8d3530831f296ec4756a
 }
