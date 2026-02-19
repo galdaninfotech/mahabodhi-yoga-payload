@@ -36,8 +36,8 @@ export const seedEcommerce = async ({
   products: {
     productHat: Product
     productTshirt: Product
-    smallTshirtHoodieVariant: Variant
-    mediumTshirtHoodieVariant: Variant
+    smallTshirtHoodieVariant?: Variant | null
+    mediumTshirtHoodieVariant?: Variant | null
   }
 }) => {
   const { productHat, productTshirt, smallTshirtHoodieVariant, mediumTshirtHoodieVariant } = products
@@ -121,7 +121,7 @@ export const seedEcommerce = async ({
         items: [
           {
             product: productTshirt.id,
-            variant: mediumTshirtHoodieVariant.id,
+            ...(mediumTshirtHoodieVariant?.id ? { variant: mediumTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
         ],
@@ -156,12 +156,12 @@ export const seedEcommerce = async ({
         items: [
           {
             product: productTshirt.id,
-            variant: smallTshirtHoodieVariant.id,
+            ...(smallTshirtHoodieVariant?.id ? { variant: smallTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
           {
             product: productTshirt.id,
-            variant: mediumTshirtHoodieVariant.id,
+            ...(mediumTshirtHoodieVariant?.id ? { variant: mediumTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
         ],
@@ -185,12 +185,12 @@ export const seedEcommerce = async ({
         items: [
           {
             product: productTshirt.id,
-            variant: smallTshirtHoodieVariant.id,
+            ...(smallTshirtHoodieVariant?.id ? { variant: smallTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
           {
             product: productTshirt.id,
-            variant: mediumTshirtHoodieVariant.id,
+            ...(mediumTshirtHoodieVariant?.id ? { variant: mediumTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
         ],
@@ -211,12 +211,12 @@ export const seedEcommerce = async ({
         items: [
           {
             product: productTshirt.id,
-            variant: smallTshirtHoodieVariant.id,
+            ...(smallTshirtHoodieVariant?.id ? { variant: smallTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
           {
             product: productTshirt.id,
-            variant: mediumTshirtHoodieVariant.id,
+            ...(mediumTshirtHoodieVariant?.id ? { variant: mediumTshirtHoodieVariant.id } : {}),
             quantity: 1,
           },
         ],
