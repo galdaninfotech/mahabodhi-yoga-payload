@@ -1,9 +1,9 @@
 # Plan: Transition to Yoga Courses and Retreats
 
-## Phase 1: Discovery and Investigation
+## Phase 1: Discovery and Investigation [checkpoint: 894f2fd]
 - [x] Task: Analyze existing `Products` collection schema and seeding logic in `src/endpoints/seed`
 - [x] Task: Identify all legacy product records currently in the database
-- [~] Task: Conductor - User Manual Verification 'Discovery and Investigation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Discovery and Investigation' (Protocol in workflow.md)
 
 ## Phase 2: Data Cleanup and Course Seeding
 - [ ] Task: Write failing integration tests to verify:
