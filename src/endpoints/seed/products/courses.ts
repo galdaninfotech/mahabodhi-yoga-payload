@@ -12,6 +12,7 @@ type ProductArgs = {
   slug: string
   description: string
   price: number
+  inventory?: number
 }
 
 export const courseData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'products'> = ({
@@ -24,6 +25,7 @@ export const courseData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'
   slug,
   description,
   price,
+  inventory = 100,
 }) => {
   return {
     meta: {
@@ -71,5 +73,6 @@ export const courseData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'
     priceInUSDEnabled: true,
     priceInUSD: price,
     relatedProducts: relatedProducts,
+    inventory: inventory,
   }
 }

@@ -10,7 +10,7 @@ describe('Products Transition', () => {
     payload = await getPayload({ config: payloadConfig })
   }, 60000)
 
-  it('should have exactly 2 products (the new courses)', async () => {
+  it('should have exactly 2 products (the new courses) with positive inventory', async () => {
     const products = await payload.find({
       collection: 'products',
     })
@@ -20,5 +20,9 @@ describe('Products Transition', () => {
     const titles = products.docs.map(doc => doc.title)
     expect(titles).toContain('7-Day Silent Meditation Retreat')
     expect(titles).toContain('Beginner Hatha Yoga Course')
+
+    products.docs.forEach(product => {
+      expect(product.inventory).toBeGreaterThan(0)
+    })
   })
 })
