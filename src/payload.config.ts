@@ -1,4 +1,4 @@
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import {
   BoldFeature,
   EXPERIMENTAL_TableFeature,
@@ -56,9 +56,9 @@ export default buildConfig({
     Subscribers,
     SubscriberGroups,
     NewsletterLogs,],
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URL || '',
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL || '',
     },
   }),
   editor: lexicalEditor({
@@ -160,7 +160,7 @@ export default buildConfig({
         handler: async ({ input, job, req }) => {
           const { newsletterId, subscriberId, to, subject, html } = input
           
-          // Convert IDs to numbers if they are numeric strings, as SQLite uses integers for IDs
+          // Convert IDs to numbers if they are numeric strings if necessary
           const nId = !isNaN(Number(newsletterId)) ? Number(newsletterId) : newsletterId
           const sId = !isNaN(Number(subscriberId)) ? Number(subscriberId) : subscriberId
 

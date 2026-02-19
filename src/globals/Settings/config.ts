@@ -19,7 +19,7 @@ export const Settings: GlobalConfig = {
         
         try {
           // Find subscribers with more than 1 group
-          // Note: In SQLite/Drizzle, we might need to fetch all and filter if complex array queries are limited
+          // Note: In PostgreSQL/Drizzle, we might need to fetch all and filter if complex array queries are limited
           const subscribers = await payload.find({
             collection: 'subscribers',
             limit: 0,
