@@ -17,8 +17,8 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
       type: 'highImpact',
       slides: [
         {
-          title: 'Payload Ecommerce Template',
-          subtitle: 'An open-source ecommerce site built with Payload and Next.js.',
+          title: 'Sambodhi Retreat Centre',
+          subtitle: '',
           image: contentImage.id,
         },
       ],
@@ -393,10 +393,10 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
       },
     ],
     meta: {
-      description: 'An open-source ecommerce site built with Payload and Next.js.',
+      description: '',
       // @ts-ignore
       image: metaImage,
-      title: 'Payload Ecommerce Template',
+      title: 'Sambodhi Retreat Centre',
     },
     title: 'Home',
   }

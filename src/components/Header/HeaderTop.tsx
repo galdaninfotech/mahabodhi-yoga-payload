@@ -10,7 +10,7 @@ export async function HeaderTop() {
   )()
 
   return (
-    <div className="top-wrap mt-4 bg-gradient-to-b from-[#0d1220] to-[#0b1020]">
+    <div className="top-wrap mt-4">
       <div className="container-xl">
         <div className="row justify-content-end">
           <div className="col-md topper d-flex align-items-xl-center">

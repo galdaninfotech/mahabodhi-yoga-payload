@@ -76,7 +76,7 @@ export async function Footer() {
     //   </div>
     // </footer>
 
-     <footer className="ftco-footer bg-amber-800">
+     <footer className="ftco-footer bg-[#030513]">
       <div className="container-xl">
         <div className="row mb-5 pb-5 justify-content-between">
           <div className="col-md-6 col-lg">
@@ -205,17 +205,17 @@ export async function Footer() {
           </div>
         </div>
       </div>
-      <div className="container-fluid px-0 py-2 bg-amber-900">
+      <div className="container-fluid px-0 py-2 bg-[#080d2a]">
         <div className="container-xl">
           <div className="row">
             <div className="col-md-12 flex flex-wrap items-center justify-center gap-y-4 md:justify-between">
               <p className="mb-0 mr-8" style={{ color: 'rgba(255,255,255,.5)', fontSize: '13px' }}>
-                Copyright ©<script>document.write(new Date().getFullYear());</script>&nbsp; All rights
-                reserved | <Link href="{sambodhiRetreatCentreData.website}" target="_blank" rel="nofollow noopener" >
-                  {/* {sambodhiRetreatCentreData.name} */}
+                Copyright ©<script>document.write(new Date().getFullYear());</script>&nbsp; All Rights Reserved | 
+                <Link href={sambodhiRetreatCentreData.website ? sambodhiRetreatCentreData.website : '#'} target="_blank" rel="nofollow noopener" >
+                  {sambodhiRetreatCentreData.name}
                 </Link>
               </p>
-              <p className='text-xs'>Developed By: <Link target="_blank" rel="nofollow noopener" className='text-xs' href='https://share.google/iGHxSBb1px3VPKD3f'>Galdan Infotech</Link></p>
+              <p style={{ color: 'rgba(255,255,255,.5)', fontSize: '13px' }}>Developed By: <Link target="_blank" rel="nofollow noopener" className='text-xs' href='https://share.google/iGHxSBb1px3VPKD3f'>Galdan Infotech</Link></p>
             </div>
           </div>
         </div>
