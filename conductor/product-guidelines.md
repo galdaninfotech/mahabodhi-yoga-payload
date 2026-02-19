@@ -1,4 +1,4 @@
-# Product Guidelines: Mahabodhi Yoga
+# Product Guidelines: Sambodhi Retreat Centre
 
 ## 1. Voice & Tone
 - **Serene & Encouraging:** Our prose should be peaceful and supportive, creating a welcoming atmosphere for all practitioners.

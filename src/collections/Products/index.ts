@@ -173,7 +173,7 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
               relationTo: 'products',
             },
           ],
-          label: 'Product Details',
+          label: 'Programmes Details',
         },
         {
           name: 'meta',

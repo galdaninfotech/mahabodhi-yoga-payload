@@ -10,7 +10,7 @@
 - [x] Task: Verify the Payload Admin UI sidebar and collection view reflect "Programmes"
 - [x] Task: Conductor - User Manual Verification 'Backend Label Updates' (Protocol in workflow.md)
 
-## Phase 3: Frontend Terminology and URL Migration
+## Phase 3: Frontend Terminology and URL Migration [checkpoint: 83ec01e]
 - [x] Task: Write failing tests for:
     - 301 Redirect from `/products` to `/programmes`
     - Terminology presence on the `/programmes` page
@@ -19,9 +19,9 @@
 - [x] Task: Update transactional components (Cart, Checkout, Orders) terminology
 - [x] Task: Configure permanent redirects in `next.config.js` or `redirects.js`
 - [x] Task: Run tests and confirm they pass (Green Phase)
-- [~] Task: Conductor - User Manual Verification 'Frontend Terminology and URL Migration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Frontend Terminology and URL Migration' (Protocol in workflow.md)
 
 ## Phase 4: Final Verification
-- [ ] Task: Verify the complete user flow from navigation to checkout uses "Programmes"
-- [ ] Task: Verify SEO redirects are functioning correctly
-- [ ] Task: Conductor - User Manual Verification 'Final Verification' (Protocol in workflow.md)
+- [x] Task: Verify the complete user flow from navigation to checkout uses "Programmes"
+- [x] Task: Verify SEO redirects are functioning correctly
+- [x] Task: Conductor - User Manual Verification 'Final Verification' (Protocol in workflow.md)

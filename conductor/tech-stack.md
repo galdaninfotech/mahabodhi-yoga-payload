@@ -1,4 +1,4 @@
-# Technology Stack: Mahabodhi Yoga
+# Technology Stack: Sambodhi Retreat Centre
 
 ## 1. Core Frameworks
 - **Frontend & App Framework:** [Next.js 15](https://nextjs.org) (App Router)

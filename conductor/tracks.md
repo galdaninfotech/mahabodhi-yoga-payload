@@ -9,7 +9,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [~] Track: Update backend and frontend UI to replace "Products" with "Programmes" and update URLs.
+## [x] Track: Update backend and frontend UI to replace "Products" with "Programmes" and update URLs.
 *Link: [./conductor/tracks/rebrand_programmes_20260219/](./conductor/tracks/rebrand_programmes_20260219/)*
 
 

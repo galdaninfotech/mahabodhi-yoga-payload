@@ -15,6 +15,6 @@ Sambodhi Retreat Centre is a comprehensive digital platform designed to serve as
 - **Streamline Operations:** Automate administrative tasks such as member management and newsletter distribution to focus more on spiritual and educational delivery.
 
 ## 4. Key Features
-- **Yoga Courses & Meditation Retreats:** A dedicated system for managing and purchasing yoga courses and retreats, leveraging the Payload ecommerce plugin.
+- **Programmes (Yoga Courses & Meditation Retreats):** A dedicated system for managing and purchasing yoga courses and retreats, rebranded as "Programmes" throughout the UI and accessible via `/programmes`.
 - **Newsletter & Communication:** A robust subscriber management and newsletter system for sharing spiritual updates and event notifications.
 - **Content Hub:** A rich repository of testimonials, blog posts, and educational content focusing on yoga philosophy and spiritual practice.

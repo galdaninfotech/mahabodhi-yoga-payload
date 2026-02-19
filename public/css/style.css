@@ -1999,7 +1999,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5,
       display: inline-block;
       width: 28px;
       height: 25px;
-      margin-right: 1px;
+      margin-right: 3px;
     }
       .topper .ftco-social li a {
         width: 28px;
