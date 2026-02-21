@@ -212,7 +212,7 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
         sortOptions: 'title',
       },
       hasMany: true,
-      relationTo: 'categories',
+      relationTo: 'programme-categories',
     },
     slugField(),
   ],

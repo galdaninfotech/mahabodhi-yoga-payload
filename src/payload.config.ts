@@ -15,12 +15,14 @@ import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from '@/collections/Categories'
+import { ProgrammeCategories } from '@/collections/ProgrammeCategories'
 import { Media } from '@/collections/Media'
 import { Pages } from '@/collections/Pages'
 import { Posts } from '@/collections/Posts'
 import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
+import { Sidebar } from '@/globals/Sidebar'
 import { plugins } from './plugins'
 
 import { Newsletters } from './collections/Newsletters'
@@ -56,6 +58,7 @@ export default buildConfig({
     Pages,
     Posts,
     Categories,
+    ProgrammeCategories,
     Media,
     Newsletters,
     Subscribers,
@@ -65,6 +68,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
+    push: false,
   }),
   editor: lexicalEditor({
     features: () => {
@@ -103,7 +107,7 @@ export default buildConfig({
   }),
   //email: nodemailerAdapter(),
   endpoints: [],
-  globals: [Header, Footer, Settings, SambodhiRetreatCentre],
+  globals: [Header, Footer, Settings, SambodhiRetreatCentre, Sidebar],
   plugins,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

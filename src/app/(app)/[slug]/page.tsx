@@ -8,8 +8,9 @@ import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import { homeStaticData } from '@/endpoints/seed/pages/home-static'
 import React from 'react'
+import { CMSLink } from '@/components/Link'
 
-import type { Page } from '@/payload-types'
+import type { Page, Sidebar } from '@/payload-types'
 import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
@@ -46,6 +47,9 @@ export default async function Page({ params }: Args) {
   const { slug = 'home' } = await params
   const url = '/' + slug
 
+  const { isEnabled: draft } = await draftMode()
+  const payload = await getPayload({ config: configPromise })
+
   let page = await queryPageBySlug({
     slug,
   })
@@ -59,12 +63,35 @@ export default async function Page({ params }: Args) {
     return notFound()
   }
 
+  const sidebar = (await payload.findGlobal({
+    slug: 'sidebar',
+    draft,
+  })) as Sidebar
+
   const { hero, layout } = page
 
   return (
-    <article className="pt-16 pb-24">
+    <article className="pt-16 pb-24 container-xl">
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="lg:col-span-3">
+          <RenderBlocks blocks={layout} />
+        </div>
+        <aside className="lg:col-span-1 lg:mt-16">
+          {sidebar?.title && (
+            <h3 className="text-xl font-bold mb-6" style={{ fontFamily: 'Oswald, serif' }}>
+              {sidebar.title}
+            </h3>
+          )}
+          {sidebar?.links && sidebar.links.length > 0 && (
+            <nav className="flex flex-col gap-4">
+              {sidebar.links.map((linkItem, index) => (
+                <CMSLink key={index} {...linkItem.link} className="text-lg hover:underline" />
+              ))}
+            </nav>
+          )}
+        </aside>
+      </div>
     </article>
   )
 }

@@ -11,6 +11,7 @@ import type { Header } from 'src/payload-types'
 import { LogoIcon } from '@/components/icons/logo'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/utilities/cn'
+import Image from 'next/image'
 
 type Props = {
   header: Header
@@ -32,9 +33,23 @@ export function HeaderClient({ header }: Props) {
 
         <div className="flex w-full items-end justify-between">
           <div className="flex w-full items-end gap-6 md:w-1/3">
-            <Link className="flex w-full items-center justify-center pt-4 pb-4 md:w-auto" href="/">
+            {/* <Link className="flex w-full items-center justify-center pt-4 pb-4 md:w-auto" href="/">
               <LogoIcon className="w-6 h-auto" />
-            </Link>
+            </Link> */}
+            <Link className="navbar-brand d-flex align-items-center" href="/">
+          <div className="icon d-flex align-items-center justify-content-center">
+            <Image
+              width="20"
+              height="32"
+              style={{ width: '20px' }}
+              src="/images/logo2.png"
+              alt=""
+            />
+          </div>
+          <span className="">
+            Mahabodhi <small>Meditation &amp; & Yoga</small>
+          </span>
+        </Link>
             {menu.length ? (
               <ul className="hidden gap-4 text-sm md:flex md:items-center">
                 {menu.map((item) => {
@@ -55,12 +70,12 @@ export function HeaderClient({ header }: Props) {
                       />
                       
                       {hasSubMenu && (
-                        <ul className="absolute left-0 top-full hidden min-w-50 flex-col bg-white border border-neutral-200 shadow-lg dark:bg-black dark:border-neutral-700 group-hover:flex z-50">
+                        <ul className="absolute -left-4 top-full hidden min-w-75 flex-col bg-white border border-neutral-200 shadow-lg dark:bg-black dark:border-neutral-700 group-hover:flex z-50">
                           {item.subMenuItems?.map((subItem) => (
                             <li key={subItem.id} className="border-b last:border-0 border-neutral-100 dark:border-neutral-800">
                               <CMSLink
                                 {...subItem.link}
-                                className="block w-full px-4 py-3 hover:bg-neutral-50 dark:hover:bg-neutral-900 whitespace-nowrap"
+                                className="block w-full px-4z py-3 hover:bg-neutral-50 dark:hover:bg-neutral-900 whitespace-nowrap"
                                 size="clear"
                                 appearance="link"
                               />

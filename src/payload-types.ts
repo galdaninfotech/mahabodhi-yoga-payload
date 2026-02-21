@@ -76,6 +76,7 @@ export interface Config {
     pages: Page;
     posts: Post;
     categories: Category;
+    'programme-categories': ProgrammeCategory;
     media: Media;
     newsletters: Newsletter;
     subscribers: Subscriber;
@@ -115,6 +116,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    'programme-categories': ProgrammeCategoriesSelect<false> | ProgrammeCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     newsletters: NewslettersSelect<false> | NewslettersSelect<true>;
     subscribers: SubscribersSelect<false> | SubscribersSelect<true>;
@@ -145,12 +147,14 @@ export interface Config {
     footer: Footer;
     settings: Setting;
     sambodhiRetreatCentre: SambodhiRetreatCentre;
+    sidebar: Sidebar;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
     sambodhiRetreatCentre: SambodhiRetreatCentreSelect<false> | SambodhiRetreatCentreSelect<true>;
+    sidebar: SidebarSelect<false> | SidebarSelect<true>;
   };
   locale: null;
   user: User & {
@@ -328,7 +332,7 @@ export interface Product {
     image?: (number | null) | Media;
     description?: string | null;
   };
-  categories?: (number | Category)[] | null;
+  categories?: (number | ProgrammeCategory)[] | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
@@ -589,7 +593,7 @@ export interface ArchiveBlock {
   } | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'products' | null;
-  categories?: (number | Category)[] | null;
+  categories?: (number | ProgrammeCategory)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
@@ -603,9 +607,9 @@ export interface ArchiveBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
+ * via the `definition` "programme-categories".
  */
-export interface Category {
+export interface ProgrammeCategory {
   id: number;
   title: string;
   /**
@@ -647,6 +651,21 @@ export interface CarouselBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'carousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1603,6 +1622,10 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
+        relationTo: 'programme-categories';
+        value: number | ProgrammeCategory;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -2179,6 +2202,17 @@ export interface PostsSelect<T extends boolean = true> {
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "programme-categories_select".
+ */
+export interface ProgrammeCategoriesSelect<T extends boolean = true> {
   title?: T;
   generateSlug?: T;
   slug?: T;
@@ -2799,6 +2833,31 @@ export interface SambodhiRetreatCentre {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sidebar".
+ */
+export interface Sidebar {
+  id: number;
+  title: string;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2899,6 +2958,30 @@ export interface SambodhiRetreatCentreSelect<T extends boolean = true> {
   instagram?: T;
   youtube?: T;
   whatsapp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sidebar_select".
+ */
+export interface SidebarSelect<T extends boolean = true> {
+  title?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

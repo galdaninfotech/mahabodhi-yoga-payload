@@ -10,13 +10,13 @@ async function CategoryList() {
   const payload = await getPayload({ config: configPromise })
 
   const categories = await payload.find({
-    collection: 'categories',
+    collection: 'programme-categories',
     sort: 'title',
   })
 
   return (
     <div>
-      <h3 className="text-xs mb-2 text-neutral-500 dark:text-neutral-400">Category</h3>
+      <h3 className="text-xs mb-2 text-neutral-500 dark:text-neutral-400">Programme Type</h3>
 
       <ul>
         {categories.docs.map((category) => {
