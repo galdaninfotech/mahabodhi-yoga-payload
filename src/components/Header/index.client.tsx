@@ -32,7 +32,7 @@ export function HeaderClient({ header }: Props) {
         </div>
 
         <div className="flex w-full items-end justify-between">
-          <div className="flex w-full items-end gap-6 md:w-1/3">
+          <div className="flex w-full items-center gap-6 md:w-1/3">
             {/* <Link className="flex w-full items-center justify-center pt-4 pb-4 md:w-auto" href="/">
               <LogoIcon className="w-6 h-auto" />
             </Link> */}
