@@ -70,28 +70,34 @@ export default async function Page({ params }: Args) {
 
   const { hero, layout } = page
 
+  const hideSidebar = ['home', 'results', 'gallery'].includes(slug)
+
   return (
     <article className="pt-16 pb-24 container-xl">
       <RenderHero {...hero} />
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-        <div className="lg:col-span-3">
-          <RenderBlocks blocks={layout} />
+      {hideSidebar ? (
+        <RenderBlocks blocks={layout} />
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="lg:col-span-3">
+            <RenderBlocks blocks={layout} />
+          </div>
+          <aside className="lg:col-span-1 lg:mt-16">
+            {sidebar?.title && (
+              <h3 className="text-xl font-bold mb-6" style={{ fontFamily: 'Oswald, serif' }}>
+                {sidebar.title}
+              </h3>
+            )}
+            {sidebar?.links && sidebar.links.length > 0 && (
+              <nav className="flex flex-col gap-4">
+                {sidebar.links.map((linkItem, index) => (
+                  <CMSLink key={index} {...linkItem.link} className="text-lg hover:underline" />
+                ))}
+              </nav>
+            )}
+          </aside>
         </div>
-        <aside className="lg:col-span-1 lg:mt-16">
-          {sidebar?.title && (
-            <h3 className="text-xl font-bold mb-6" style={{ fontFamily: 'Oswald, serif' }}>
-              {sidebar.title}
-            </h3>
-          )}
-          {sidebar?.links && sidebar.links.length > 0 && (
-            <nav className="flex flex-col gap-4">
-              {sidebar.links.map((linkItem, index) => (
-                <CMSLink key={index} {...linkItem.link} className="text-lg hover:underline" />
-              ))}
-            </nav>
-          )}
-        </aside>
-      </div>
+      )}
     </article>
   )
 }
