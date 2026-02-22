@@ -1,14 +1,13 @@
 import type { Metadata } from 'next'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { CMSLink } from '@/components/Link'
+import { homeStaticData } from '@/endpoints/seed/pages/home-static'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
-import { homeStaticData } from '@/endpoints/seed/pages/home-static'
-import React from 'react'
-import { CMSLink } from '@/components/Link'
+import { getPayload } from 'payload'
 
 import type { Page, Sidebar } from '@/payload-types'
 import { notFound } from 'next/navigation'
@@ -73,31 +72,33 @@ export default async function Page({ params }: Args) {
   const hideSidebar = ['home', 'results', 'gallery'].includes(slug)
 
   return (
-    <article className="pt-16 pb-24 container-xl">
+    <article className="pb-24">
       <RenderHero {...hero} />
-      {hideSidebar ? (
-        <RenderBlocks blocks={layout} />
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          <div className="lg:col-span-3">
-            <RenderBlocks blocks={layout} />
+      <div className="container-xl pt-12">
+        {hideSidebar ? (
+          <RenderBlocks blocks={layout} />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            <div className="lg:col-span-3">
+              <RenderBlocks blocks={layout} />
+            </div>
+            <aside className="lg:col-span-1 lg:mt-16">
+              {sidebar?.title && (
+                <h3 className="text-xl font-bold mb-6" style={{ fontFamily: 'Oswald, serif' }}>
+                  {sidebar.title}
+                </h3>
+              )}
+              {sidebar?.links && sidebar.links.length > 0 && (
+                <nav className="flex flex-col gap-4">
+                  {sidebar.links.map((linkItem, index) => (
+                    <CMSLink key={index} {...linkItem.link} className="text-lg hover:underline" />
+                  ))}
+                </nav>
+              )}
+            </aside>
           </div>
-          <aside className="lg:col-span-1 lg:mt-16">
-            {sidebar?.title && (
-              <h3 className="text-xl font-bold mb-6" style={{ fontFamily: 'Oswald, serif' }}>
-                {sidebar.title}
-              </h3>
-            )}
-            {sidebar?.links && sidebar.links.length > 0 && (
-              <nav className="flex flex-col gap-4">
-                {sidebar.links.map((linkItem, index) => (
-                  <CMSLink key={index} {...linkItem.link} className="text-lg hover:underline" />
-                ))}
-              </nav>
-            )}
-          </aside>
-        </div>
-      )}
+        )}
+      </div>
     </article>
   )
 }
