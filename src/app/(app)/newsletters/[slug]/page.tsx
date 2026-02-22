@@ -65,7 +65,7 @@ export default async function NewsletterPage({ params }: Args) {
         </header>
 
         {newsletter.heroImage && typeof newsletter.heroImage !== 'string' && (
-          <div className="w-full relative mb-12 rounded-xl overflow-hidden aspect-video bg-muted/50 border">
+          <div className="w-full relative mb-12 rounded-sm overflow-hidden aspect-video bg-muted/50 border">
             <Media resource={newsletter.heroImage} fill imgClassName="object-cover" />
           </div>
         )}
@@ -81,16 +81,21 @@ export default async function NewsletterPage({ params }: Args) {
           newsletter.predesignedPDF !== null &&
           'url' in newsletter.predesignedPDF &&
           newsletter.predesignedPDF.url && (
-            <div className="mt-12 text-center p-8 bg-muted rounded-xl">
-              <h3 className="text-2xl font-semibold mb-4">Download as PDF</h3>
-              <p className="text-muted-foreground mb-6">
-                You can also consume this newsletter as a PDF document.
-              </p>
+            <div className="mt-12 flex flex-col items-center">
+              <h3 className="text-2xl font-semibold mb-6">Newsletter PDF</h3>
+              <div className="w-full aspect-[1/1.4] max-w-4xl border rounded-sm overflow-hidden shadow-sm mb-6 bg-muted/20">
+                <iframe
+                  src={newsletter.predesignedPDF.url as string}
+                  className="w-full h-full"
+                  title="PDF Preview"
+                />
+              </div>
               <Button asChild size="lg">
                 <a
                   href={newsletter.predesignedPDF.url as string}
                   target="_blank"
                   rel="noopener noreferrer"
+                  download
                 >
                   Download PDF
                 </a>
