@@ -12,10 +12,10 @@ export const Address: React.FC<AddressBlock> = (props) => {
         {props.enabled && (
           <>
             <div className="bg-white flex flex-col p-8 text-xs">
-              <h2 className="text-xl text-gray-800 mb-4" style={{ fontFamily: 'Oswald, serif' }}>{props.title}</h2>
+              <h2 className="text-xl text-gray-800 mb-4" style={{ fontFamily: 'Big Shoulders Display, serif' }}>{props.title}</h2>
               <p className="text-xs text-gray-600 mb-8">{props.description}</p>
 
-              <h5 className="text-sm text-gray-800" style={{ fontFamily: 'Oswald, serif' }}>{props.name}</h5>
+              <h5 className="text-sm text-gray-800" style={{ fontFamily: 'Big Shoulders Display, serif' }}>{props.name}</h5>
               {props.slogan && <p className="text-[10px] text-gray-600 mb-4">{props.slogan}</p>}
               
               <p className="flex items-center mb-2">

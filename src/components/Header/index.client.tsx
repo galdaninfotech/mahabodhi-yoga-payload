@@ -1,7 +1,5 @@
 'use client'
 import { CMSLink } from '@/components/Link'
-import { Cart } from '@/components/Cart'
-import { OpenCartButton } from '@/components/Cart/OpenCart'
 import Link from 'next/link'
 import React, { Suspense } from 'react'
 
@@ -46,8 +44,8 @@ export function HeaderClient({ header }: Props) {
               alt=""
             />
           </div>
-          <span className="">
-            Mahabodhi <small>Meditation &amp; & Yoga</small>
+          <span className="text-white">
+            Mahabodhi <small className="text-white/80">Meditation &amp; & Yoga</small>
           </span>
         </Link>
             {menu.length ? (
@@ -60,7 +58,7 @@ export function HeaderClient({ header }: Props) {
                       <CMSLink
                         {...item.link}
                         size={'clear'}
-                        className={cn('relative navLink font-oswald', {
+                        className={cn('relative navLink font-big-shoulders !text-[16px] !text-white hover:!text-white/80 [&.active]:!text-white', {
                           active:
                             item.link.url && item.link.url !== '/'
                               ? pathname.includes(item.link.url)
@@ -70,12 +68,12 @@ export function HeaderClient({ header }: Props) {
                       />
                       
                       {hasSubMenu && (
-                        <ul className="absolute -left-4 top-full hidden min-w-75 flex-col bg-white border border-neutral-200 shadow-lg dark:bg-black dark:border-neutral-700 group-hover:flex z-50">
+                        <ul className="absolute -left-0 top-18 hidden min-w-75 flex-col border-b border-amber-200 bg-white group-hover:flex z-50 py-3">
                           {item.subMenuItems?.map((subItem) => (
-                            <li key={subItem.id} className="border-b last:border-0 border-neutral-100 dark:border-neutral-800">
+                            <li key={subItem.id} className="">
                               <CMSLink
                                 {...subItem.link}
-                                className="block w-full px-4z py-3 hover:bg-neutral-50 dark:hover:bg-neutral-900 whitespace-nowrap"
+                                className="block w-full py-2 hover:text-neutral-50 whitespace-nowrap" 
                                 size="clear"
                                 appearance="link"
                               />
@@ -88,12 +86,6 @@ export function HeaderClient({ header }: Props) {
                 })}
               </ul>
             ) : null}
-          </div>
-
-          <div className="flex justify-end md:w-1/3 gap-4 pb-4">
-            <Suspense fallback={<OpenCartButton />}>
-              <Cart />
-            </Suspense>
           </div>
         </div>
       </nav>

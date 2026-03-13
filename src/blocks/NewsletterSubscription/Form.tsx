@@ -64,7 +64,7 @@ export const SubscriptionForm: React.FC<{ showNameField?: boolean | null }> = ({
         type="submit"
         size="lg"
         disabled={loading}
-        className="h-12 w-full px-8 font-oswald whitespace-nowrap sm:w-auto mt-2 rounded-md uppercase"
+        className="h-12 w-full px-8 font-big-shoulders whitespace-nowrap sm:w-auto mt-2 rounded-md uppercase"
       >
         {loading ? 'SUBSCRIBING...' : 'SUBSCRIBE'}
       </Button>

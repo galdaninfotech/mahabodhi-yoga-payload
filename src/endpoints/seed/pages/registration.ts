@@ -2,22 +2,27 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
-
 export const mainRegistrationPageData = ({
-  heroImage,
-  metaImage,
+  mediaMap,
 }: PageArgs): RequiredDataFromCollectionSlug<'pages'> => {
+
+  console.log('Seeding register page data...')
+
   return {
     slug: 'register',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
+      // {
+      //   blockName: null,
+      //   blockType: 'mediaBlock',
+      //   media: mediaMap['register.jpg'],
+      // },
       {
         blockType: 'registrationForm',
         enabled: true,
@@ -27,7 +32,7 @@ export const mainRegistrationPageData = ({
     ],
     meta: {
       description: 'Register for courses and retreats',
-      image: heroImage.id,
+      // image: mediaMap['register.jpg'],
       title: 'Registration',
     },
     title: 'Registration',

@@ -2,26 +2,25 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const historyPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
 
-export const historyPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding history-of-mahabodhi page data...')
+
   return {
     slug: 'history-of-mahabodhi',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
         enabled: true,
         title: 'History Of MIMC',
         subtitle: 'Mahabodhi International Meditation Centre',
+        media: mediaMap['history-of-mahabodhi.jpg'],
         content: {
           root: {
             type: 'root',
@@ -111,7 +110,7 @@ export const historyPageData: (args: PageArgs) => RequiredDataFromCollectionSlug
     ],
     meta: {
       description: 'History Of Mahabodhi',
-      image: heroImage.id,
+      image: mediaMap['history-of-mahabodhi.jpg'],
       title: 'History Of Mahabodhi',
     },
     title: 'History Of Mahabodhi',

@@ -2,22 +2,50 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
-
 export const guidelinesPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
+  mediaMap,
+  contactForm,
 }) => {
+
+  console.log('Seeding guidelines page data...')
+
   return {
     slug: 'guidelines',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
+      {
+        enabled: true,
+        blockName: 'Content With Media',
+        blockType: 'contentWithMedia',
+        title: 'Guidelines',
+        subtitle: 'Sambodhi Retreat Centre',
+        media: mediaMap['guidelines.jpg'],
+        content: {
+          root: {
+            type: 'root',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                type: 'paragraph',
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [],
+                direction: 'ltr',
+              },
+            ],
+            direction: 'ltr',
+          },
+        },
+      },
       {
         enabled: true,
         blockType: 'listTwo',
@@ -112,7 +140,7 @@ export const guidelinesPageData: (args: PageArgs) => RequiredDataFromCollectionS
     ],
     meta: {
       description: 'Guidelines',
-      image: heroImage.id,
+      image: mediaMap['guidelines.jpg'],
       title: 'Guidelines',
     },
     title: 'Guidelines',

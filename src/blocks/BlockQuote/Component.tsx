@@ -11,7 +11,7 @@ export const BlockQuote: React.FC<BlockQuoteBlockProps> = (props) => {
             <div className="bg-white border-l-4 border-red-700 p-4 my-4">
               <blockquote className="flex items-start">
                 <span className="text-6xl text-red-700 font-bold mr-4">&ldquo;</span>
-                <p className="text-sm text-gray-800" style={{ fontFamily: 'Oswald, serif' }}>
+                <p className="text-sm text-gray-800" style={{ fontFamily: 'Big Shoulders Display, serif' }}>
                   {props.quote}
                 </p>
               </blockquote>

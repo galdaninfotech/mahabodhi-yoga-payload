@@ -1927,12 +1927,12 @@ a, button {
     outline: none !important; 
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5,
-.h1, .h2, .h3, .h4, .h5 {
-  line-height: 1.2;
-  color: black;
-  font-weight: 400;
-  font-family: "Roboto Condensed", Arial, sans-serif; 
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, .h1, .h2, .h3, .h4, .h5 {
+    line-height: 1.2;
+    color: black;
+    font-weight: 400;
+    font-family: "Big Shoulders Display", Arial, sans-serif;
+    text-transform: uppercase;
 }
 
 .top-wrap {
@@ -3277,10 +3277,12 @@ textarea.form-control {
 } */
 
 .heading-section h2, .heading-section .h2 {
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 600;
   font-family: "Big Shoulders Display", sans-serif;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
+  margin-top: 50px;
+  text-transform: capitalize;
 }
   .heading-section h2 span, .heading-section .h2 span {
     color: #d19a4a; 
@@ -3298,6 +3300,22 @@ textarea.form-control {
   color: #fff; 
 }
 
+.heading-section h3, .heading-section .h3 {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Big Shoulders Display", sans-serif;
+  letter-spacing: 3px;
+  margin-top: 40px;
+  text-transform: capitalize;
+}
+.heading-section h4, .heading-section .h4 {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Big Shoulders Display", sans-serif;
+  letter-spacing: 3px;
+  margin-top: 30px;
+  text-transform: capitalize;
+}
 .img,
 .blog-img,
 .user-img {
@@ -3942,4 +3960,12 @@ ol.instructors,p {
     -webkit-font-smoothing: antialiased;
     -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
     text-shadow: rgba(0,0,0,.01) 0 0 1px
+}
+
+/* Rich text visibility override: keep CMS prose readable on light backgrounds */
+.prose,
+.prose *,
+.payload-richtext,
+.payload-richtext * {
+  color: #111827 !important;
 }

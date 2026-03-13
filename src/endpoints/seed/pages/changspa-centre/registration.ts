@@ -2,20 +2,18 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const registrationPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
 
-export const registrationPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding registration page data...')
+
   return {
     slug: 'registration',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -24,7 +22,7 @@ export const registrationPageData: (args: PageArgs) => RequiredDataFromCollectio
         blockType: 'contentWithMedia',
         title: 'Registration',
         subtitle: 'Sambodhi Retreat Centre',
-        media: null,
+        media: mediaMap['registration.jpg'],
         content: {
           root: {
             type: 'root',
@@ -65,7 +63,7 @@ export const registrationPageData: (args: PageArgs) => RequiredDataFromCollectio
     ],
     meta: {
       description: 'Registration',
-      image: heroImage.id,
+      image: mediaMap['registration.jpg'],
       title: 'Registration',
     },
     title: 'Registration',

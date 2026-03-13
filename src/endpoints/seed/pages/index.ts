@@ -12,16 +12,16 @@ import { founderPageData } from './founder/founder'
 import { backgroundPageData } from './founder/background'
 import { visionPageData } from './founder/vision'
 import { storyPageData } from './founder/story'
-import { coursesRetreatsPageData } from './courses-retreats/courses-retreats'
+import { coursesRetreatsPageData } from './courses-retreats/yoga-courses-and-retreats'
 import { yogaCoursesPageData } from './courses-retreats/yoga-courses'
 import { shangriLaRetreatPageData } from './courses-retreats/shangri-la-retreat'
-import { internationalFestivalPageData } from './courses-retreats/international-festival'
-import { customizedCoursesPageData } from './courses-retreats/customized-courses'
+import { internationalFestivalPageData } from './courses-retreats/international-festival-of-yoga-and-meditation'
+import { customizedCoursesPageData } from './courses-retreats/yoga-customized-courses'
 import { changspaCentrePageData } from './changspa-centre/changspa-centre'
-import { regularYogaPageData } from './changspa-centre/regular-yoga'
+import { regularYogaPageData } from './changspa-centre/regular-yoga-and-meditation'
 import { meditationRetreatsPageData } from './changspa-centre/meditation-retreats'
-import { changspaCoursesPageData } from './changspa-centre/changspa-courses'
-import { dhammaTalkPageData } from './changspa-centre/dhamma-talk'
+import { changspaCoursesPageData } from './changspa-centre/yoga-courses-at-changspa-centre'
+import { dhammaTalkPageData } from './changspa-centre/sunday-dhamma-talk'
 import { upcomingEventsPageData } from './changspa-centre/upcoming-events'
 import { registrationPageData } from './changspa-centre/registration'
 import { galleryPageData } from './gallery'
@@ -30,17 +30,15 @@ import type { Media } from '@/payload-types'
 
 export const seedPages = async ({
   payload,
-  images,
   contactForm,
+  mediaMap,
 }: {
   payload: Payload
-  images: {
-    imageHat: Media
-    imageHero: Media
-  }
   contactForm: any
+  mediaMap: Record<string, Media>
 }) => {
-  const { imageHat, imageHero } = images
+  const imageHat = mediaMap['imageHat']
+  const imageHero = mediaMap['imageHero']
 
   payload.logger.info(`— Seeding pages in order...`)
 
@@ -49,8 +47,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: homePageData({
-      contentImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -62,9 +59,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: aboutPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
-      topContentImage: imageHero,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -76,8 +71,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: sambodhiRetreatCentreData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -88,8 +82,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: facilitiesPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -100,8 +93,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: guidelinesPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -112,8 +104,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: instructorsPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -124,8 +115,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: historyPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -136,8 +126,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: testimonialsPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -149,8 +138,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: founderPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -162,8 +150,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: backgroundPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -174,8 +161,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: visionPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -186,8 +172,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: storyPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -199,8 +184,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: coursesRetreatsPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -212,8 +196,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: yogaCoursesPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -224,8 +207,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: shangriLaRetreatPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -236,8 +218,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: internationalFestivalPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -248,8 +229,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: customizedCoursesPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -261,8 +241,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: changspaCentrePageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -274,8 +253,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: regularYogaPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -286,8 +264,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: meditationRetreatsPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -298,8 +275,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: changspaCoursesPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -310,8 +286,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: dhammaTalkPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -322,8 +297,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: upcomingEventsPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -334,8 +308,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: registrationPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -347,8 +320,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: galleryPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -360,8 +332,7 @@ export const seedPages = async ({
     collection: 'pages',
     depth: 0,
     data: mainRegistrationPageData({
-      heroImage: imageHero,
-      metaImage: imageHat,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,
@@ -374,7 +345,7 @@ export const seedPages = async ({
     depth: 0,
     data: contactPageData({
       contactForm: contactForm,
-      heroImage: imageHero,
+      mediaMap,
     }),
     context: {
       disableRevalidate: true,

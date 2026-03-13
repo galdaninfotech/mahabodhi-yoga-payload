@@ -2,20 +2,18 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const yogaCoursesPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
 
-export const yogaCoursesPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding yoga-courses page data...')
+
   return {
     slug: 'yoga-courses',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -24,6 +22,7 @@ export const yogaCoursesPageData: (args: PageArgs) => RequiredDataFromCollection
         blockType: 'contentWithMedia',
         title: 'Yoga Courses',
         subtitle: 'Sambodhi Retreat Centre',
+        media: mediaMap['yoga-courses.jpg'],
         content: {
           root: {
             type: 'root',
@@ -273,7 +272,7 @@ export const yogaCoursesPageData: (args: PageArgs) => RequiredDataFromCollection
     ],
     meta: {
       description: 'Yoga Courses',
-      image: heroImage.id,
+      image: mediaMap['yoga-courses.jpg'],
       title: 'Yoga Courses',
     },
     title: 'Yoga Courses',

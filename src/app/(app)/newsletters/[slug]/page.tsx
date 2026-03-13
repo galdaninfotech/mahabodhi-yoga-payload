@@ -3,7 +3,7 @@ import { RichText } from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { generateMeta } from '@/utilities/generateMeta'
 import configPromise from '@payload-config'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Download } from 'lucide-react'
 import type { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
@@ -185,11 +185,9 @@ export default async function NewsletterPage({ params }: Args) {
 
       <div className="container-xl">
         <div className="max-w-3xl mx-auto">
-          <div className="prose md:prose-md dark:prose-invert max-w-none mx-auto mb-10">
-            {newsletter.content && (
-              <RichText className="max-w-none" data={newsletter.content} enableGutter={false} />
-            )}
-          </div>
+          {newsletter.content && (
+            <RichText className="max-w-none mb-10" data={newsletter.content} enableGutter={false} />
+          )}
 
           {newsletter.predesignedPDF &&
             typeof newsletter.predesignedPDF === 'object' &&
@@ -210,8 +208,10 @@ export default async function NewsletterPage({ params }: Args) {
                     href={newsletter.predesignedPDF.url as string}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="flex items-center gap-2"
                     download
                   >
+                    <Download className="h-4 w-4" />
                     Download PDF
                   </a>
                 </Button>

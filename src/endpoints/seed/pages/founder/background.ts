@@ -2,26 +2,31 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const backgroundPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
 
-export const backgroundPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding founder-background page data...')
+
   return {
     slug: 'founder-background',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
+        blockName: null,
+        blockType: 'mediaBlock',
+        media: mediaMap['founder-background.jpg'],
+      },
+      {
         enabled: true,
-        title: 'About The Founder',
-        subtitle: 'Background',
+        subtitle: 'About The Founder',
+        title: 'Background',
+        blockName: 'Content With Media',
+        blockType: 'contentWithMedia',
         content: {
           root: {
             type: 'root',
@@ -87,13 +92,11 @@ export const backgroundPageData: (args: PageArgs) => RequiredDataFromCollectionS
             direction: 'ltr',
           },
         },
-        blockName: 'Content With Media',
-        blockType: 'contentWithMedia',
       },
     ],
     meta: {
       description: 'Founder Background',
-      image: heroImage.id,
+      image: mediaMap['founder-background.jpg'],
       title: 'Founder Background',
     },
     title: 'Background',

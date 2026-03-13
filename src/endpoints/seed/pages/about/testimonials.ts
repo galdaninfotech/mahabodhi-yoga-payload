@@ -2,20 +2,18 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const testimonialsPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
 
-export const testimonialsPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding testimonials page data...')
+
   return {
     slug: 'testimonials',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -24,7 +22,7 @@ export const testimonialsPageData: (args: PageArgs) => RequiredDataFromCollectio
         blockType: 'contentWithMedia',
         title: 'Experience of Meditators',
         subtitle: 'Sambodhi Retreat Centre',
-        media: null,
+        media: mediaMap['testimonials.jpg'],
         content: {
           root: {
             type: 'root',
@@ -56,7 +54,6 @@ export const testimonialsPageData: (args: PageArgs) => RequiredDataFromCollectio
           },
         },
       },
-
       {
         enabled: true,
         blockName: 'Client Testimonials',
@@ -121,7 +118,7 @@ export const testimonialsPageData: (args: PageArgs) => RequiredDataFromCollectio
     ],
     meta: {
       description: 'Testimonials',
-      image: heroImage.id,
+      image: mediaMap['testimonials.jpg'],
       title: 'Testimonials',
     },
     title: 'Testimonials',

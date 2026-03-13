@@ -4,6 +4,9 @@ import { Footer } from '@/payload-types'
 
 export const footerData = async ({ req }: { req: PayloadRequest }): Promise<Partial<DataFromGlobalSlug<'footer'>>> => {
   const aboutPage = await getPageBySlug('pages', 'about', req)
+  const ShanriLaRetreatPage = await getPageBySlug('pages', 'shangri-la-retreat', req)
+  const MeditationRetreatsPage = await getPageBySlug('pages', 'meditation-retreats', req)
+  const HistoryOfMahabodhiPage = await getPageBySlug('pages', 'history-of-mahabodhi', req)
 
   const moreLinks: NonNullable<Footer['moreLinks']> = []
 
@@ -11,7 +14,7 @@ export const footerData = async ({ req }: { req: PayloadRequest }): Promise<Part
     moreLinks.push({
       link: {
         type: "reference",
-        label: "About Us",
+        label: "Sambodhi Retreat Centre",
         reference: {
           relationTo: "pages",
           value: aboutPage.id,
@@ -23,33 +26,40 @@ export const footerData = async ({ req }: { req: PayloadRequest }): Promise<Part
   moreLinks.push(
     {
       link: {
-        type: 'custom',
-        label: 'Admin',
-        url: '/admin',
-      },
+        type: "reference",
+        label: "Shanri-La Retreat",
+        reference: {
+          relationTo: "pages",
+          value: ShanriLaRetreatPage.id,
+        },
+      }
     },
     {
       link: {
         type: 'custom',
-        label: 'Find my order',
-        url: '/find-order',
+        label: 'Sambodhi Newsletter',
+        url: '/newsletters',
       },
     },
     {
       link: {
-        type: 'custom',
-        label: 'Source Code',
-        newTab: true,
-        url: 'https://github.com/payloadcms/payload/tree/main/templates/website',
-      },
+        type: "reference",
+        label: "Meditation Retreats",
+        reference: {
+          relationTo: "pages",
+          value: MeditationRetreatsPage.id,
+        },
+      }
     },
     {
       link: {
-        type: 'custom',
-        label: 'Payload',
-        newTab: true,
-        url: 'https://payloadcms.com/',
-      },
+        type: "reference",
+        label: "History Of Mahabodhi",
+        reference: {
+          relationTo: "pages",
+          value: HistoryOfMahabodhiPage.id,
+        },
+      }
     },
   )
 

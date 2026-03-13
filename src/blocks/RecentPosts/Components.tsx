@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import type { RecentPosts as RecentPostsBlock, Post } from '@/payload-types'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 export const RecentPosts: React.FC<RecentPostsBlock> = (props) => {
   const { limit, categories } = props
@@ -51,11 +52,11 @@ export const RecentPosts: React.FC<RecentPostsBlock> = (props) => {
   }, [limit, categories])
 
   if (loading) {
-    return <div>Loading recent tours...</div>
+    return <div>Loading recent news...</div>
   }
 
   if (error) {
-    return <div>Error loading tours: {error}</div>
+    return <div>Error loading news: {error}</div>
   }
 
   // Helper function to extract plain text from Payload's richText object
@@ -101,7 +102,7 @@ const getPlainTextExcerpt = (richText: any): string => {
   // console.log(posts)
   return (
     <div>
-      <h2 style={{ textAlign: 'center', fontSize: '2em', marginBottom: '30px' }}>LATEST NEWS</h2>
+      <h2 style={{ textAlign: 'center', fontSize: '1.6em', fontFamily: 'Big Shoulders Display', color: '#d19a4a', marginBottom: '30px' }}>LATEST NEWS</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {postsArray.map((post) => {
           const imageUrl =
@@ -124,28 +125,33 @@ const getPlainTextExcerpt = (richText: any): string => {
               <div
                 style={{
                   width: '100%',
-                  height: '150px',
+                  height: '200px',
                   backgroundColor: '#f0f0f0',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  position: 'relative',
+                  overflow: 'hidden',
                   marginBottom: '15px',
-                  fontSize: '0.0em',
                   color: '#999',
                 }}
               >
                 {imageUrl ? (
-                  <Link href={`/posts/${post.slug}`}>
-                    <Image src={imageUrl} alt={postTitle} width={150} height={150} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Link href={`/posts/${post.slug}`} style={{ display: 'block', width: '100%', height: '100%' }}>
+                    <Image 
+                      src={imageUrl} 
+                      alt={postTitle} 
+                      fill 
+                      style={{ objectFit: 'cover' }} 
+                    />
                   </Link>
                 ) : (
-                  <span>No Image</span>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                    <span>No Image</span>
+                  </div>
                 )}
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                 {publishedDate && (
-                  <div style={{ backgroundColor: '#ff5300', color: 'white', padding: '8px 12px', textAlign: 'center', marginRight: '15px', }} >
+                  <div style={{ backgroundColor: '#d19a4a', color: 'white', padding: '8px 12px', textAlign: 'center', marginRight: '15px', }} >
                     <div style={{ fontSize: '0.8em', fontWeight: 'bold', lineHeight: 1 }}> {publishedDate.getDate()} </div>
                     <div style={{ fontSize: '0.6em', textTransform: 'uppercase' }}>
                       {publishedDate.toLocaleString('default', { month: 'short' })}
@@ -153,17 +159,23 @@ const getPlainTextExcerpt = (richText: any): string => {
                   </div>
                 )}
                 <Link href={`/posts/${post.slug}`}>
-                  <h3 style={{ margin: 0, fontSize: '0.8em', fontFamily: 'Oswald', textTransform: 'uppercase', }} > {postTitle} </h3>
+                  <h3 style={{ margin: 0, fontSize: '0.8em', fontFamily: 'Big Shoulders Display', textTransform: 'uppercase', }} > {postTitle} </h3>
                 </Link>
               </div>
-              <p style={{ fontSize: '0.7em', color: '#555', flexGrow: 1, marginBottom: '5px' }}>
+              <p style={{ fontSize: '0.9em', color: '#555', flexGrow: 1, marginBottom: '5px' }}>
                 {getPlainTextExcerpt(post.content)}
               </p>
 
-              <Link className='text-[12px] uppercase font-oswald text-right' style={{fontFamily: 'Oswald'}} href={`/posts/${post.slug}`}>Read More</Link>
+              <Link className='text-[12px] uppercase font-big-shoulders text-right' style={{fontFamily: 'Big Shoulders Display'}} href={`/posts/${post.slug}`}>Read More</Link>
             </div>
           )
         })}
+      </div>
+      
+      <div className="mt-12 flex justify-end">
+        <Button asChild variant="outline" className="font-big-shoulders uppercase tracking-widest px-8 rounded-xs">
+          <Link href="/posts">More News Posts</Link>
+        </Button>
       </div>
     </div>
   )

@@ -13,7 +13,7 @@ export async function HeaderTop() {
     <div className="top-wrap mt-4">
       <div className="container-xl">
         <div className="row justify-content-end">
-          <div className="col-md topper d-flex align-items-xl-center">
+          <div className="col-md topper hidden md:flex align-items-xl-center">
             <div className="text">
               {sambodhiRetreatCentreData.phone1 && (
                 <div className="con flex items-center">

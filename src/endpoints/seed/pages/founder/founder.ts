@@ -2,28 +2,33 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
 }
 
 export const founderPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
+  mediaMap,
 }) => {
+
+  console.log('Seeding about-the-founder page data...')
+
   return {
     slug: 'about-the-founder',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
+      {
+        blockName: null,
+        blockType: 'mediaBlock',
+        media: mediaMap['about-the-founder.jpg'],
+      },
       {
         enabled: true,
         blockName: 'Content With Media',
         blockType: 'contentWithMedia',
-        title: 'About The Founder',
-        subtitle: 'Mahabodhi International Meditation Centre',
+        title: 'Mahabodhi International Meditation Centre',
+        subtitle: 'About The Founder',
         content: {
           root: {
             type: 'root',
@@ -176,7 +181,7 @@ export const founderPageData: (args: PageArgs) => RequiredDataFromCollectionSlug
     ],
     meta: {
       description: 'About The Founder',
-      image: heroImage.id,
+      image: mediaMap['about-the-founder.jpg'],
       title: 'About The Founder',
     },
     title: 'About The Founder',

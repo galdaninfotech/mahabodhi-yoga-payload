@@ -6,24 +6,19 @@ const categories = ['Yoga Courses', 'Meditation Retreats']
 
 export const seedProducts = async ({
   payload,
-  images,
+  mediaMap,
 }: {
   payload: Payload
-  images: {
-    imageHat: Media
-    imageTshirtBlack: Media
-    imageTshirtWhite: Media
-    imageHero: Media
-  }
+  mediaMap: Record<string, Media>
 }) => {
-  const { imageHero } = images
+  const hero = mediaMap['imageHero']
 
   payload.logger.info(`— Seeding categories...`)
 
   const [coursesCategory, retreatsCategory] = await Promise.all(
     categories.map((category) =>
       payload.create({
-        collection: 'categories',
+        collection: 'programme-categories',
         data: {
           title: category,
           slug: category.toLowerCase().replace(/ /g, '-'),
@@ -35,6 +30,17 @@ export const seedProducts = async ({
     ),
   )
 
+  const accessoriesCategory = await payload.create({
+    collection: 'categories',
+    data: {
+      title: 'Accessories',
+      slug: 'accessories',
+    },
+    context: {
+      disableRevalidate: true,
+    },
+  })
+
   payload.logger.info(`— Seeding products (courses and retreats)...`)
 
   const retreat = await payload.create({
@@ -45,8 +51,8 @@ export const seedProducts = async ({
       slug: '7-day-silent-meditation-retreat',
       description: 'A transformative 7-day silent meditation retreat in the heart of the mountains.',
       price: 50000,
-      galleryImage: imageHero,
-      metaImage: imageHero,
+      galleryImage: hero,
+      metaImage: hero,
       variantTypes: [],
       categories: [retreatsCategory],
       relatedProducts: [],
@@ -64,8 +70,8 @@ export const seedProducts = async ({
       slug: 'beginner-hatha-yoga-course',
       description: 'Master the basics of Hatha yoga in this 4-week comprehensive course.',
       price: 25000,
-      galleryImage: imageHero,
-      metaImage: imageHero,
+      galleryImage: hero,
+      metaImage: hero,
       variantTypes: [],
       categories: [coursesCategory],
       relatedProducts: [retreat],
@@ -81,7 +87,7 @@ export const seedProducts = async ({
     productRetreat: retreat,
     productCourse: course,
     // Maintaining compatibility with other seed scripts if they expect these keys
-    accessoriesCategory: coursesCategory, 
+    accessoriesCategory, 
     productHat: retreat,
     productTshirt: course,
     // Variants are not needed for courses yet, but we provide nulls to avoid errors in seedEcommerce

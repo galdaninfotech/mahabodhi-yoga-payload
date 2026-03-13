@@ -8,7 +8,8 @@ import { seedPages } from './pages'
 import { seedEcommerce } from './ecommerce'
 import { seedGlobals } from './globals'
 import { seedNewsletters } from './newsletters'
-import { seedPosts } from './posts'
+import { seedPosts } from './news-posts'
+import { seedPostCategories } from './news-posts/categories'
 
 const collections: CollectionSlug[] = [
   'newsletter-logs',
@@ -25,6 +26,7 @@ const collections: CollectionSlug[] = [
   'variantTypes',
   'products',
   'categories',
+  'programme-categories',
   'media',
   'pages',
   'posts',
@@ -50,7 +52,7 @@ export const seed = async ({
   }
 
   // Execute seeding steps in logical order
-  const { imageHat, imageTshirtBlack, imageTshirtWhite, imageHero } = await seedMedia({ payload })
+  const mediaMap = await seedMedia({ payload })
   
   const { customer } = await seedUsers({ payload })
   
@@ -58,13 +60,17 @@ export const seed = async ({
   
   const products = await seedProducts({ 
     payload, 
-    images: { imageHat, imageTshirtBlack, imageTshirtWhite, imageHero } 
+    mediaMap
   })
   
+  const postCategories = await seedPostCategories({
+    payload,
+  })
+
   await seedPages({ 
     payload, 
-    images: { imageHat, imageHero }, 
-    contactForm 
+    contactForm,
+    mediaMap
   })
   
   await seedEcommerce({ 
@@ -80,14 +86,14 @@ export const seed = async ({
 
   await seedNewsletters({
     payload,
-    images: { imageHero },
+    mediaMap
   })
 
   await seedPosts({
     payload,
-    images: { imageHero },
-    categories: { accessoriesCategory: products.accessoriesCategory },
+    categories: postCategories,
     authors: { customer },
+    mediaMap
   })
 
   payload.logger.info('Seeded database successfully!')

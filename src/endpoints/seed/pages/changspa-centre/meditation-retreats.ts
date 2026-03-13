@@ -2,19 +2,20 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
-
 export const meditationRetreatsPageData: (
   args: PageArgs,
-) => RequiredDataFromCollectionSlug<'pages'> = ({ heroImage, metaImage }) => {
+) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap }) => {
+
+  console.log('Seeding meditation-retreats page data...')
+
   return {
     slug: 'meditation-retreats',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -23,6 +24,7 @@ export const meditationRetreatsPageData: (
         blockType: 'contentWithMedia',
         title: 'Meditation Retreats',
         subtitle: 'Sambodhi Retreat Centre',
+        media: mediaMap['meditation-retreats.jpg'],
         content: {
           root: {
             type: 'root',
@@ -112,7 +114,7 @@ export const meditationRetreatsPageData: (
         enabled: true,
         blockType: 'listTwo',
         blockName: 'ListTwo',
-        marginTop: '-60px',
+        marginTop: '-128px',
         marginLeft: '20px',
         space: '10px',
         lists: [
@@ -201,7 +203,7 @@ export const meditationRetreatsPageData: (
         enabled: true,
         blockName: 'List Two',
         blockType: 'listTwo',
-        marginTop: '-60px',
+        marginTop: '-110px',
         marginLeft: '20px',
         space: '10px',
         lists: [
@@ -235,7 +237,7 @@ export const meditationRetreatsPageData: (
     ],
     meta: {
       description: 'Meditation Retreats',
-      image: heroImage.id,
+      image: mediaMap['meditation-retreats.jpg'],
       title: 'Meditation Retreats',
     },
     title: 'Meditation Retreats',

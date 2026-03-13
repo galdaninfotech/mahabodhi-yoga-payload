@@ -274,6 +274,9 @@ export const Newsletters: CollectionConfig<'posts'> = {
               type: 'upload',
               relationTo: 'media',
               label: 'Upload PDF',
+              admin: {
+                description: 'Please ensure the PDF file size is minimized (recommended under 5MB) for better email delivery performance.',
+              },
               filterOptions: {
                 mimeType: {
                   equals: 'application/pdf',

@@ -19,7 +19,7 @@ export const RegistrationFormClient: React.FC<CustomRegistrationFormBlockProps> 
       <div className="contact-form-mimc-block bg-white p-3 md:p-8 rounded-lg shadow-md">
         {enabled && (
           <>
-            <h2 className="text-xl text-gray-800 mb-4" style={{ fontFamily: 'Oswald, serif' }}>{title}</h2>
+            <h2 className="text-xl text-gray-800 mb-4" style={{ fontFamily: 'Big Shoulders Display, serif' }}>{title}</h2>
             <p className="text-xs text-gray-600 mb-8">{description}</p>
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -144,7 +144,7 @@ export const RegistrationFormClient: React.FC<CustomRegistrationFormBlockProps> 
               <div>
                 <button
                   type="submit"
-                  className="flex justify-center py-3 px-8 rounded-xs border border-transparent rounded-xs shadow-sm text-xs font-medium text-white bg-[orange] hover:bg-[#ff5300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 max-w-1/3"
+                  className="flex justify-center py-3 px-8 rounded-xs border border-transparent shadow-sm text-xs font-medium !text-white bg-[#d19a4a] hover:bg-[#e67c48] max-w-1/3"
                 >
                   Register Now
                 </button>
@@ -155,12 +155,12 @@ export const RegistrationFormClient: React.FC<CustomRegistrationFormBlockProps> 
       </div>
 
       <div className="bg-white flex flex-col mt-12 p-8 text-xs">
-        <h2 className="text-xl text-gray-800 mb-4" style={{ fontFamily: 'Oswald, serif' }}>Our Office</h2>
+        <h2 className="text-xl text-gray-800 mb-4" style={{ fontFamily: 'Big Shoulders Display, serif' }}>Our Office</h2>
         <p className="text-xs text-gray-600 mb-8">Need help or do you have any Wishes or Questions? Just drop us a line and get more information!</p>
 
         {/* Contact Person */}
         {sambodhiRetreatCentreData?.contactPerson && (
-          <span className="text-xs text-gray-800 uppercase" style={{ fontFamily: 'Oswald, serif' }} > {sambodhiRetreatCentreData?.contactPerson} </span>
+          <span className="text-xs text-gray-800 uppercase" style={{ fontFamily: 'Big Shoulders Display, serif' }} > {sambodhiRetreatCentreData?.contactPerson} </span>
         )}
         {sambodhiRetreatCentreData?.designation && (
           <span className="text-[12px] text-gray-600 mb-2">({sambodhiRetreatCentreData?.designation})</span>
@@ -168,7 +168,7 @@ export const RegistrationFormClient: React.FC<CustomRegistrationFormBlockProps> 
 
         {/* Name */}
         {sambodhiRetreatCentreData?.name && (
-          <h5 className="text-sm text-gray-800" style={{ fontFamily: 'Oswald, serif' }} > {sambodhiRetreatCentreData?.name} </h5>
+          <h5 className="text-sm text-gray-800" style={{ fontFamily: 'Big Shoulders Display, serif' }} > {sambodhiRetreatCentreData?.name} </h5>
         )}
         {sambodhiRetreatCentreData?.slogan && (
           <p className="text-[10px] text-gray-600 mb-2">{sambodhiRetreatCentreData?.slogan}</p>

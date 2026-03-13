@@ -2,35 +2,29 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
 }
 
 export const sambodhiRetreatCentreData: (
   args: PageArgs,
-) => RequiredDataFromCollectionSlug<'pages'> = ({ heroImage, metaImage }) => {
+) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap }) => {
+
+  console.log('Seeding sambodhi-retreat-centre page data...')
+
   return {
     slug: 'sambodhi-retreat-centre',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
         enabled: true,
-        title: null,
-        description: null,
-        quote:
-          'Meditation is experiencing Buddha-hood within oneself and compassion is radiation, the boundless fragrance of that Buddha-hood in all directions for the benefits of all.',
-        author: 'Ven. Bhikkhu Sanghasena',
-        blockName: 'BlockQuote',
-        blockType: 'blockQuote',
-      },
-      {
-        enabled: true,
         title: 'Sambodhi Retreat Centre',
         subtitle: 'Mahabodhi International Meditation Centre',
+        media: mediaMap['about.jpg'],
+        blockName: 'Content With Media',
+        blockType: 'contentWithMedia',
         content: {
           root: {
             type: 'root',
@@ -96,13 +90,21 @@ export const sambodhiRetreatCentreData: (
             direction: 'ltr',
           },
         },
-        blockName: 'Content With Media',
-        blockType: 'contentWithMedia',
+      },
+      {
+        enabled: true,
+        title: null,
+        description: null,
+        quote:
+          'Meditation is experiencing Buddha-hood within oneself and compassion is radiation, the boundless fragrance of that Buddha-hood in all directions for the benefits of all.',
+        author: 'Ven. Bhikkhu Sanghasena',
+        blockName: 'BlockQuote',
+        blockType: 'blockQuote',
       },
     ],
     meta: {
       description: 'Sambodhi Retreat Centre',
-      image: heroImage.id,
+      image: mediaMap['about.jpg'],
       title: 'Sambodhi Retreat Centre',
     },
     title: 'Sambodhi Retreat Centre',

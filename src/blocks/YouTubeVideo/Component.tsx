@@ -24,7 +24,7 @@ export const YouTubeVideoComponent: React.FC<Props> = ({ enabled, videoId: rawVi
 
   return (
     <>
-      {title && <h2 className='mb-8' style={{ fontFamily: '"Big Shoulders Display", sans-serif' }}>{ title }</h2>}
+      {title && <h2 className='mb-8' style={{ fontFamily: '"Big Shoulders Display", sans-serif', color: '#d19a4a', marginBlock: '30px' }}>{ title }</h2>}
       <div className={`w-full aspect-video ${className || ''}`}>
         <iframe
           className="w-full h-full"

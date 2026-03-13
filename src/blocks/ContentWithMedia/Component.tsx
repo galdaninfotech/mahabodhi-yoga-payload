@@ -10,8 +10,19 @@ export const ContentWithMedia: React.FC<Props> = (props) => {
 
   return (
     <section className="section ftco-section ftco-about-section ftco-no-pt ftco-no-pb viewed">
+      <div className="d-flex align-items-start mb-4">
+        <div className="img w-100 pt-lg-5">
+          {/* <img src="/images/about.jpg" className="img-fluid aos-init aos-animate" alt="" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000" /> */}
+          {typeof media === 'object' && media !== null && (
+            <div className="content-media">
+              <Media resource={media} />
+            </div>
+          )}
+        </div>
+      </div>
+
       <span className="subheading">{subtitle}</span>
-      <h2 className="mb-4">{title}</h2>
+      <h2 className="mb-4" style={{color: '#d19a4a'}}>{title}</h2>
       <div className="">
         <div className="row">
           <div
@@ -22,22 +33,13 @@ export const ContentWithMedia: React.FC<Props> = (props) => {
           >
             <div className="py-md-2 px-lg-2">
               {content && (
-                <div className="text-gray-700 my-6">
+                <div className="text-gray-700 my-6 prose-h2:text-2xl prose-h2:mb-4">
                   <RichText data={content} enableGutter={false} />
                 </div>
               )}
             </div>
           </div>
-          <div className="d-flex align-items-start">
-            <div className="img w-100 pt-lg-5">
-              {/* <img src="/images/about.jpg" className="img-fluid aos-init aos-animate" alt="" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000" /> */}
-              {typeof media === 'object' && media !== null && (
-                <div className="content-media">
-                  <Media resource={media} />
-                </div>
-              )}
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

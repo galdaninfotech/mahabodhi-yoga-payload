@@ -2,19 +2,20 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
-
 export const changspaCentrePageData: (
   args: PageArgs,
-) => RequiredDataFromCollectionSlug<'pages'> = ({ heroImage, metaImage }) => {
+) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap }) => {
+
+  console.log('Seeding changspa-centre page data...')
+
   return {
     slug: 'changspa-centre',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -23,6 +24,7 @@ export const changspaCentrePageData: (
         blockType: 'contentWithMedia',
         title: 'Changspa Center',
         subtitle: 'Changspa Center',
+        media: mediaMap['changspa-centre.jpg'],
         content: {
           root: {
             type: 'root',
@@ -119,7 +121,7 @@ export const changspaCentrePageData: (
     ],
     meta: {
       description: 'Changspa Centre',
-      image: heroImage.id,
+      image: mediaMap['changspa-centre.jpg'],
       title: 'Changspa Centre',
     },
     title: 'Changspa Centre',

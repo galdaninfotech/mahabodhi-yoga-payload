@@ -13,7 +13,7 @@ export const NewsletterSubscription: React.FC<Props> = (props) => {
     <section className="py-24">
       <div className="container px-0 md:px-4">
         <div
-          className="bg-primary/5 rounded-none md:rounded-3xl relative overflow-hidden flex flex-col lg:flex-row items-stretch min-h-125"
+          className="bg-gray-200 rounded-none md:rounded-2xl relative overflow-hidden flex flex-col lg:flex-row items-stretch min-h-125"
         >
           {/* Background Decorative Pattern */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
@@ -21,7 +21,7 @@ export const NewsletterSubscription: React.FC<Props> = (props) => {
           <div className="flex-1 p-4 md:!p-8 lg:!p-12 xl:!p-24 flex flex-col justify-center space-y-6 relative z-10 w-full lg:w-1/2">
             <div>
               {subtitle && (
-                <span className="inline-block text-primary font-mono text-sm uppercase tracking-widest mb-2">
+                <span className="inline-block text-[#d19a4a] font-mono text-sm uppercase tracking-widest mb-2">
                   {subtitle}
                 </span>
               )}

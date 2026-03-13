@@ -147,14 +147,16 @@ export interface Config {
     footer: Footer;
     settings: Setting;
     sambodhiRetreatCentre: SambodhiRetreatCentre;
-    sidebar: Sidebar;
+    'links-sidebar': LinksSidebar;
+    'news-sidebar': NewsSidebar;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
     sambodhiRetreatCentre: SambodhiRetreatCentreSelect<false> | SambodhiRetreatCentreSelect<true>;
-    sidebar: SidebarSelect<false> | SidebarSelect<true>;
+    'links-sidebar': LinksSidebarSelect<false> | LinksSidebarSelect<true>;
+    'news-sidebar': NewsSidebarSelect<false> | NewsSidebarSelect<true>;
   };
   locale: null;
   user: User & {
@@ -463,7 +465,7 @@ export interface Page {
   title: string;
   publishedOn?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'lowImpact';
     slides?:
       | {
           title?: string | null;
@@ -472,7 +474,6 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: (number | null) | Media;
   };
   layout: (
     | CallToActionBlock
@@ -1420,6 +1421,9 @@ export interface Newsletter {
     };
     [k: string]: unknown;
   };
+  /**
+   * Please ensure the PDF file size is minimized (recommended under 5MB) for better email delivery performance.
+   */
   predesignedPDF?: (number | null) | Media;
   publishedAt?: string | null;
   authors?: (number | User)[] | null;
@@ -1773,7 +1777,6 @@ export interface PagesSelect<T extends boolean = true> {
               image?: T;
               id?: T;
             };
-        media?: T;
       };
   layout?:
     | T
@@ -2833,9 +2836,9 @@ export interface SambodhiRetreatCentre {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sidebar".
+ * via the `definition` "links-sidebar".
  */
-export interface Sidebar {
+export interface LinksSidebar {
   id: number;
   title: string;
   links?:
@@ -2853,6 +2856,20 @@ export interface Sidebar {
         id?: string | null;
       }[]
     | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-sidebar".
+ */
+export interface NewsSidebar {
+  id: number;
+  title: string;
+  /**
+   * Number of latest news posts to display in the sidebar.
+   */
+  limit: number;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2964,9 +2981,9 @@ export interface SambodhiRetreatCentreSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sidebar_select".
+ * via the `definition` "links-sidebar_select".
  */
-export interface SidebarSelect<T extends boolean = true> {
+export interface LinksSidebarSelect<T extends boolean = true> {
   title?: T;
   links?:
     | T
@@ -2982,6 +2999,17 @@ export interface SidebarSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-sidebar_select".
+ */
+export interface NewsSidebarSelect<T extends boolean = true> {
+  title?: T;
+  limit?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

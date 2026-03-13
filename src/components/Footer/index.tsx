@@ -22,11 +22,11 @@ export async function Footer() {
     1,
   )()
   
-  // const currentYear = new Date().getFullYear()
-  // const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '')
+  const currentYear = new Date().getFullYear()
+  const copyrightDate = 1992 + (currentYear > 1992 ? `-${currentYear}` : '')
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700'
 
-  // const copyrightName = COMPANY_NAME || SITE_NAME || ''
+  const copyrightName = sambodhiRetreatCentreData.name || 'Sambodhi Retreat Centre'
 
   return (
     // <footer className="text-sm text-neutral-500 dark:text-neutral-400">
@@ -210,7 +210,8 @@ export async function Footer() {
           <div className="row">
             <div className="col-md-12 flex flex-wrap items-center justify-center gap-y-4 md:justify-between">
               <p className="mb-0 mr-8" style={{ color: 'rgba(255,255,255,.5)', fontSize: '13px' }}>
-                Copyright ©<script>document.write(new Date().getFullYear());</script>&nbsp; All Rights Reserved | 
+                &copy; {copyrightDate} &nbsp; All Rights Reserved. |&nbsp;
+                
                 <Link href={sambodhiRetreatCentreData.website ? sambodhiRetreatCentreData.website : '#'} target="_blank" rel="nofollow noopener" >
                   {sambodhiRetreatCentreData.name}
                 </Link>

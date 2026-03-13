@@ -110,7 +110,7 @@ export const CheckoutPage: React.FC = () => {
   if (cartIsEmpty && isProcessingPayment) {
     return (
       <div className="py-12 w-full items-center justify-center">
-        <div className="prose dark:prose-invert text-center max-w-none self-center mb-8">
+        <div className="prose text-center max-w-none self-center mb-8">
           <p>Processing your enrollment fee...</p>
         </div>
         <LoadingSpinner />
@@ -120,7 +120,7 @@ export const CheckoutPage: React.FC = () => {
 
   if (cartIsEmpty) {
     return (
-      <div className="prose dark:prose-invert py-12 w-full items-center">
+      <div className="prose py-12 w-full items-center">
         <p>Your Bodhi Basket is empty.</p>
         <Link href="/programmes">Explore programmes?</Link>
       </div>
@@ -133,7 +133,7 @@ export const CheckoutPage: React.FC = () => {
         <h2 className="font-medium text-3xl">Contact</h2>
         {!user && (
           <div className=" bg-accent dark:bg-black rounded-lg p-4 w-full flex items-center">
-            <div className="prose dark:prose-invert">
+            <div className="prose">
               <Button asChild className="no-underline text-inherit" variant="outline">
                 <Link href="/login">Log in</Link>
               </Button>

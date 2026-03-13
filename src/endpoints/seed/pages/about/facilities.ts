@@ -2,20 +2,19 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const facilitiesPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
+  const hero = mediaMap["imageHero"]
 
-export const facilitiesPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding facilities page data...')
+
   return {
     slug: 'facilities',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -24,6 +23,7 @@ export const facilitiesPageData: (args: PageArgs) => RequiredDataFromCollectionS
         blockType: 'contentWithMedia',
         title: 'Facilities',
         subtitle: 'Sambodhi Retreat Centre',
+        media: mediaMap['facilities.jpeg'],
         content: {
           root: {
             type: 'root',
@@ -91,7 +91,6 @@ export const facilitiesPageData: (args: PageArgs) => RequiredDataFromCollectionS
         },
       },
       {
-        id: '6901ce9cad7e4d0db3281be5',
         enabled: true,
         blockName: 'ListTwo',
         lists: [
@@ -127,6 +126,10 @@ export const facilitiesPageData: (args: PageArgs) => RequiredDataFromCollectionS
           {
             title: null,
             content: 'Book/Cassette Store',
+          },
+          {
+            title: null,
+            content: 'Book Store',
           },
           {
             title: null,
@@ -166,7 +169,7 @@ export const facilitiesPageData: (args: PageArgs) => RequiredDataFromCollectionS
     ],
     meta: {
       description: 'Our Facilities',
-      image: heroImage.id,
+      image: mediaMap['facilities.jpeg'],
       title: 'Our Facilities',
     },
     title: 'Our Facilities',

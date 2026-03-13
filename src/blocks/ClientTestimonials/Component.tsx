@@ -11,7 +11,7 @@ export const ClientTestimonials: React.FC<ClientTestimonialsBlockProps> = (props
           <div className="row justify-content-center pb-4">
             <div className="col-md-7 text-center section-heading-section aos-init aos-animate">
               <span className="subheading">Testimonial</span>
-              <h2 className="mb-3">Happy Meditators</h2>
+              <h2 className="mb-3" style={{color: '#d19a4a'}}>Happy Meditators</h2>
             </div>
           </div>
           <div className="row">

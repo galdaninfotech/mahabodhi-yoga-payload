@@ -2,19 +2,20 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
-
 export const shangriLaRetreatPageData: (
   args: PageArgs,
-) => RequiredDataFromCollectionSlug<'pages'> = ({ heroImage, metaImage }) => {
+) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap }) => {
+
+  console.log('Seeding shangri-la-retreat page data...')
+
   return {
     slug: 'shangri-la-retreat',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -23,6 +24,7 @@ export const shangriLaRetreatPageData: (
         blockType: 'contentWithMedia',
         title: 'Shangri-La Retreat',
         subtitle: 'Sambodhi Retreat Centre',
+        media: mediaMap['shangri-la-retreat.jpg'],
         content: {
           root: {
             type: 'root',
@@ -226,7 +228,7 @@ export const shangriLaRetreatPageData: (
     ],
     meta: {
       description: 'Shangri-La Retreat',
-      image: heroImage.id,
+      image: mediaMap['shangri-la-retreat.jpg'],
       title: 'Shangri-La Retreat',
     },
     title: 'Shangri-La Retreat',

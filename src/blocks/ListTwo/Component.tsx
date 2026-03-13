@@ -17,7 +17,7 @@ export const ListTwo: React.FC<ListTwoBlockProps> = (props) => {
                   <FaDharmachakra color="#ff5300" className='mt-0.5' />
                 </span>
                 <div className="flex flex-col ml-4">
-                  { list.title && <span className="text-[14px]/6 text-gray-700 tracking-wider" style={{ fontFamily: 'Oswald' }}>{list.title}</span> }
+                  { list.title && <span className="text-[14px]/6 text-gray-700 tracking-wider" style={{ fontFamily: 'Big Shoulders Display' }}>{list.title}</span> }
                   <p className="text-xs/6 text-gray-700">{list.content}</p>
                 </div>
               </li>

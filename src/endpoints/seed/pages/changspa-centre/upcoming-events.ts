@@ -2,19 +2,20 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
-
 export const upcomingEventsPageData: (
   args: PageArgs,
-) => RequiredDataFromCollectionSlug<'pages'> = ({ heroImage, metaImage }) => {
+) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap }) => {
+
+  console.log('Seeding upcoming-events page data...')
+
   return {
     slug: 'upcoming-events',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
@@ -23,6 +24,7 @@ export const upcomingEventsPageData: (
         blockType: 'contentWithMedia',
         title: 'Upcoming Events',
         subtitle: 'Sambodhi Retreat Centre',
+        media: mediaMap['upcoming-events.jpg'],
         content: {
           root: {
             type: 'root',
@@ -216,7 +218,7 @@ export const upcomingEventsPageData: (
     ],
     meta: {
       description: 'Upcoming Events',
-      image: heroImage.id,
+      image: mediaMap['upcoming-events.jpg'],
       title: 'Upcoming Events',
     },
     title: 'Upcoming Events',

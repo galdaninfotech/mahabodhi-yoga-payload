@@ -116,7 +116,7 @@ export const headerData = async ({ req }: { req: PayloadRequest }): Promise<Part
       {
         link: {
           type: 'reference',
-          label: 'About The Founder',
+          label: 'Founder',
           reference: {
             relationTo: 'pages',
             value: founderPage?.id,
@@ -302,17 +302,31 @@ export const headerData = async ({ req }: { req: PayloadRequest }): Promise<Part
       {
         link: {
           type: 'custom',
-          label: 'Programmes',
-          url: '/programmes',
+          label: 'News',
+          url: '/posts',
         },
       },
       {
         link: {
           type: 'custom',
-          label: 'Account',
-          url: '/account',
+          label: 'Newsletters',
+          url: '/newsletters',
         },
       },
+      // {
+      //   link: {
+      //     type: 'custom',
+      //     label: 'Programmes',
+      //     url: '/programmes',
+      //   },
+      // },
+      // {
+      //   link: {
+      //     type: 'custom',
+      //     label: 'Account',
+      //     url: '/account',
+      //   },
+      // },
     ],
   }
 }

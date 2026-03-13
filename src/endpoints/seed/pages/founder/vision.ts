@@ -2,26 +2,31 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type PageArgs = {
-  heroImage: Media
-  metaImage: Media
+  mediaMap: Record<string, Media>
+  contactForm?: any
 }
+export const visionPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ mediaMap, contactForm }) => {
 
-export const visionPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+  console.log('Seeding founder-vision page data...')
+
   return {
     slug: 'founder-vision',
     _status: 'published',
     hero: {
       type: 'lowImpact',
-      media: heroImage.id,
     },
     layout: [
       {
+        blockName: null,
+        blockType: 'mediaBlock',
+        media: mediaMap['founder-vision.jpg'],
+      },
+      {
         enabled: true,
-        title: 'About The Founder',
-        subtitle: 'Vision',
+        title: 'Vision',
+        subtitle: 'About The Founder',
+        blockName: 'Content With Media',
+        blockType: 'contentWithMedia',
         content: {
           root: {
             type: 'root',
@@ -125,13 +130,11 @@ export const visionPageData: (args: PageArgs) => RequiredDataFromCollectionSlug<
             direction: 'ltr',
           },
         },
-        blockName: 'Content With Media',
-        blockType: 'contentWithMedia',
       },
     ],
     meta: {
       description: 'Founder Vision',
-      image: heroImage.id,
+      image: mediaMap['founder-vision.jpg'],
       title: 'Founder Vision',
     },
     title: 'Vision',

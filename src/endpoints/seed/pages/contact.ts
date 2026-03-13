@@ -4,21 +4,28 @@ import { RequiredDataFromCollectionSlug } from 'payload'
 
 type ProductArgs = {
   contactForm: Form
-  heroImage: Media
+  mediaMap: Record<string, Media>
 }
 
 export const contactPageData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
   contactForm,
-  heroImage,
+  mediaMap,
 }) => {
+
+  console.log('Seeding contact page data...')
+
   return {
     slug: 'contact',
     _status: 'published',
     hero: {
       type: 'none',
-      media: heroImage.id,
     },
     layout: [
+      // {
+      //   blockName: null,
+      //   blockType: 'mediaBlock',
+      //   media: mediaMap['contact.jpg'],
+      // },
       {
         blockType: 'formBlock',
         enableIntro: true,
@@ -55,6 +62,11 @@ export const contactPageData: (args: ProductArgs) => RequiredDataFromCollectionS
         },
       },
     ],
+    meta: {
+      description: 'Contact',
+      // image: mediaMap['contact.jpg'],
+      title: 'Contact',
+    },
     title: 'Contact',
   }
 }

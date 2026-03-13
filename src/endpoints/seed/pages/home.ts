@@ -2,14 +2,17 @@ import type { Category, Media } from '@/payload-types'
 import { RequiredDataFromCollectionSlug } from 'payload'
 
 type ProductArgs = {
-  metaImage: Media
-  contentImage: Media
+  mediaMap: Record<string, Media>
 }
 
 export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  metaImage,
-  contentImage,
+  mediaMap,
 }) => {
+
+
+  console.log('Seeding home page data...')
+
+
   return {
     slug: 'home',
     _status: 'published',
@@ -18,11 +21,25 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
       slides: [
         {
           title: 'Sambodhi Retreat Centre',
-          subtitle: '',
-          image: contentImage.id,
+          subtitle: 'Compassion in Action, Meditation in Action',
+          image: mediaMap['slide1.jpg'],
+        },
+        {
+          title: 'Sambodhi Retreat Centre',
+          subtitle: 'Compassion in Action, Meditation in Action',
+          image: mediaMap['slide2.jpg'],
+        },
+        {
+          title: 'Sambodhi Retreat Centre',
+          subtitle: 'Compassion in Action, Meditation in Action',
+          image: mediaMap['slide3.jpg'],
+        },
+        {
+          title: 'Sambodhi Retreat Centre',
+          subtitle: 'Compassion in Action, Meditation in Action',
+          image: mediaMap['slide4.jpg'],
         },
       ],
-      media: contentImage.id,
     },
     layout: [
       {
@@ -91,8 +108,9 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
       },
 
       {
-        id: '697efcc37ad855bd18470709',
         enabled: true,
+        blockName: null,
+        blockType: 'contentWithMedia',
         title: 'International Yoga day 2025',
         subtitle: "Ladakh's Biggest Festival Of Yoga and Meditation",
         media: null,
@@ -247,12 +265,12 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
             version: 1,
           },
         },
-        blockName: null,
-        blockType: 'contentWithMedia',
       },
 
       {
         enabled: true,
+        blockName: 'Yoga Instructor Course',
+        blockType: 'contentWithMedia',
         title: 'Yoga Instructor Course',
         subtitle: 'Yogo for all',
         content: {
@@ -286,73 +304,87 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
             direction: null,
           },
         },
-        blockName: 'Yoga Instructor Course',
-        blockType: 'contentWithMedia',
       },
 
       {
-        "id": "6901ce81ad7e4d0db3281bcb",
-        "blockType": "clientTestimonials",
-        "enabled": true,
-        "blockName": "Client Testimonials",
-        "testimonials": [
+        limit: 6,
+        blockName: null,
+        blockType: 'recentPosts',
+        categories: [],
+      },
+
+      {
+        enabled: true,
+        blockType: 'clientTestimonials',
+        blockName: 'Client Testimonials',
+        testimonials: [
           {
-            "title": null,
-            "content": "I am very grateful to join the three day meditation camp. I love the silence the most. And I really enjoyed the group meditation sessions and I have more confidence to take a longer retreat. Thanks for the teacher and staff for organizing such a wonderful camp.",
-            "author": "Littuis, Cheng - USA"
+            title: null,
+            content:
+              'I am very grateful to join the three day meditation camp. I love the silence the most. And I really enjoyed the group meditation sessions and I have more confidence to take a longer retreat. Thanks for the teacher and staff for organizing such a wonderful camp.',
+            author: 'Littuis, Cheng - USA',
           },
           {
-            "title": null,
-            "content": "I came here with my group - 36 persons to offer Buddha Statues to Mahabodhi Center. We donated the big standing Buddha and 2 statue of Disciple of the Buddha. We are happy to come here. And hope coming here again next time. May all the tasks of Bhikkhu Sanghasena succeed for all the humanity.",
-            "author": "Ven. Phra Khrusitthiwarakhom - Thailand"
+            title: null,
+            content:
+              'I came here with my group - 36 persons to offer Buddha Statues to Mahabodhi Center. We donated the big standing Buddha and 2 statue of Disciple of the Buddha. We are happy to come here. And hope coming here again next time. May all the tasks of Bhikkhu Sanghasena succeed for all the humanity.',
+            author: 'Ven. Phra Khrusitthiwarakhom - Thailand',
           },
           {
-            "title": null,
-            "content": "Thank you for teaching me meditation. My mind has not been so still and at peace in a long time. I see meditation as a way of life and a spiritual journey that I pray to continue following. Thank you for spreading your wisdom, love and compassion to us. With much love and peace.",
-            "author": "Erika Rabura - USA"
+            title: null,
+            content:
+              'Thank you for teaching me meditation. My mind has not been so still and at peace in a long time. I see meditation as a way of life and a spiritual journey that I pray to continue following. Thank you for spreading your wisdom, love and compassion to us. With much love and peace.',
+            author: 'Erika Rabura - USA',
           },
           {
-            "title": null,
-            "content": "I have had the 3 most beautiful days in this beautiful life and beautiful world. This place is amazing and inspirational for someone like me, a young person searching for truth and way to be happy and to change the world. Here I was able to go really deep into meditation, to listen to the silence behind my heart beat, to understand that it is possible to be happy that I don't have to be afraid.",
-            "author": "Renetta Hofstuede - Holland"
+            title: null,
+            content:
+              "I have had the 3 most beautiful days in this beautiful life and beautiful world. This place is amazing and inspirational for someone like me, a young person searching for truth and way to be happy and to change the world. Here I was able to go really deep into meditation, to listen to the silence behind my heart beat, to understand that it is possible to be happy that I don't have to be afraid.",
+            author: 'Renetta Hofstuede - Holland',
           },
           {
-            "title": null,
-            "content": "Wow!! I have been waiting for a Vipassana for almost 3 years and by the end of the first day meditation here at MIMC, I realized why I have waited so long. Meditating on the top of the world has been one peak experience. The food was amazing, the accommodations here are so clean and comfortable and the teachings here are filled with love, wisdom and joy. Thank you so much for bringing this sacred dream to life. I will always remember the time spent here and like Ven. Sanghasena mentioned, the seed has been planted in fertile soil and I am excited to see how it will blossom and grow.",
-            "author": "Nina Kak - Belgium"
+            title: null,
+            content:
+              'Wow!! I have been waiting for a Vipassana for almost 3 years and by the end of the first day meditation here at MIMC, I realized why I have waited so long. Meditating on the top of the world has been one peak experience. The food was amazing, the accommodations here are so clean and comfortable and the teachings here are filled with love, wisdom and joy. Thank you so much for bringing this sacred dream to life. I will always remember the time spent here and like Ven. Sanghasena mentioned, the seed has been planted in fertile soil and I am excited to see how it will blossom and grow.',
+            author: 'Nina Kak - Belgium',
           },
           {
-            "title": null,
-            "content": "The experience made me realize how beneficial meditation is for experiencing the inner peace and serenity that is possible in my life. I found that my thoughts were almost nonstop during meditation, yet there were few moments of quiet that's were just wonderful. The 3-Day course was a very good introduction to meditation not too short, not too long. I also enjoyed Yoga + walking meditation. I love what you are doing here by serving the community and by teaching and introducing meditation to the world. Thank you.",
-            "author": "Erika - USA"
+            title: null,
+            content:
+              "The experience made me realize how beneficial meditation is for experiencing the inner peace and serenity that is possible in my life. I found that my thoughts were almost nonstop during meditation, yet there were few moments of quiet that's were just wonderful. The 3-Day course was a very good introduction to meditation not too short, not too long. I also enjoyed Yoga + walking meditation. I love what you are doing here by serving the community and by teaching and introducing meditation to the world. Thank you.",
+            author: 'Erika - USA',
           },
           {
-            "title": null,
-            "content": "Thank you for the most beautiful, spiritual and uplifting few days. Mahabodhi is such a beautiful place in the North India setting - perfect for obtaining the calmness, tranquility and compassion that I came again to seek here. Kunzang is a fantastic and lovely teacher and her words of wisdom. I hope, I will form the basis of my meditation practice back in the UK. Thank you to everyone at Sambodhi Retreat Centre for such a magical few days and I look forward to returning in the near future.",
-            "author": "Laura Boscawau - London UK"
+            title: null,
+            content:
+              'Thank you for the most beautiful, spiritual and uplifting few days. Mahabodhi is such a beautiful place in the North India setting - perfect for obtaining the calmness, tranquility and compassion that I came again to seek here. Kunzang is a fantastic and lovely teacher and her words of wisdom. I hope, I will form the basis of my meditation practice back in the UK. Thank you to everyone at Sambodhi Retreat Centre for such a magical few days and I look forward to returning in the near future.',
+            author: 'Laura Boscawau - London UK',
           },
           {
-            "title": null,
-            "content": "This was my first experience with Buddhist teaching and meditation practice, although I had seven years of Hatha yoga practice before beginning of this program. Meditation had truly shown me a new valuable tool from the Asian/Vedic traditions of spirituality and mindfulness. This course has given me the impetus to try to act and think differently, as well as to seek strength from meditation in my life in the United States. Thank you so much for designing a course so appropriate to beginner who comes from different societies, cultures and religious traditions.",
-            "author": "Andrew R. Carreras, Oakland, California - USA"
+            title: null,
+            content:
+              'This was my first experience with Buddhist teaching and meditation practice, although I had seven years of Hatha yoga practice before beginning of this program. Meditation had truly shown me a new valuable tool from the Asian/Vedic traditions of spirituality and mindfulness. This course has given me the impetus to try to act and think differently, as well as to seek strength from meditation in my life in the United States. Thank you so much for designing a course so appropriate to beginner who comes from different societies, cultures and religious traditions.',
+            author: 'Andrew R. Carreras, Oakland, California - USA',
           },
           {
-            "title": null,
-            "content": "Firstly, I would like to extend my gratitude to our most revered teacher Ven. Sanghasena for introducing me to the world of meditation from my childhood. Attending complete silence meditation course was an enriching experience. It will help me to continue my practice further in life.",
-            "author": "Sonam Wangyal - MRS Student"
+            title: null,
+            content:
+              'Firstly, I would like to extend my gratitude to our most revered teacher Ven. Sanghasena for introducing me to the world of meditation from my childhood. Attending complete silence meditation course was an enriching experience. It will help me to continue my practice further in life.',
+            author: 'Sonam Wangyal - MRS Student',
           },
           {
-            "title": null,
-            "content": "It was once life time experience, splendid, beautiful and soulful. When I came for the retreat first time, I was expecting to be more evolved and needless to say it surpassed my expectations. Everything about the program was perfect. The retreat was very enriching and powerful. Nestled in the Himalayas, it is a picture perfect setting, ideal for connecting with oneself. Spending time with Guruji is the closest anyone can come to enrolment. I am truly blessed and would like to come back again and again and this is my third time to this beautiful Centre.",
-            "author": "Vickrant Mahajan - India"
-          }
+            title: null,
+            content:
+              'It was once life time experience, splendid, beautiful and soulful. When I came for the retreat first time, I was expecting to be more evolved and needless to say it surpassed my expectations. Everything about the program was perfect. The retreat was very enriching and powerful. Nestled in the Himalayas, it is a picture perfect setting, ideal for connecting with oneself. Spending time with Guruji is the closest anyone can come to enrolment. I am truly blessed and would like to come back again and again and this is my third time to this beautiful Centre.',
+            author: 'Vickrant Mahajan - India',
+          },
         ],
       },
 
       {
         blockName: 'Newsletter Subscription',
         blockType: 'newsletterSubscription',
-        media: contentImage.id,
+        media: mediaMap['slide1.jpg'],
         showNameField: true,
         subtitle: 'Newsletter Subscription',
         title: 'Get updates straight to your inbox',
@@ -387,15 +419,16 @@ export const homePageData: (args: ProductArgs) => RequiredDataFromCollectionSlug
           },
         },
         notes: [
-            { note: "* By subscribing, you agree to our Privacy Policy and consent to receive updates." },
-            { note: "* We respect your privacy. Unsubscribe at any time." },
-        ]
+          {
+            note: '* By subscribing, you agree to our Privacy Policy and consent to receive updates.',
+          },
+          { note: '* We respect your privacy. Unsubscribe at any time.' },
+        ],
       },
     ],
     meta: {
       description: '',
-      // @ts-ignore
-      image: metaImage,
+      image: mediaMap['sambodhi.jpg'],
       title: 'Sambodhi Retreat Centre',
     },
     title: 'Home',

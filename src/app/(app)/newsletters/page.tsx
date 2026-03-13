@@ -6,6 +6,9 @@ import type { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 import { getPayload } from 'payload'
+import { NewsSidebar } from '@/components/NewsSidebar'
+import { LinksSidebar } from '@/components/LinksSidebar'
+import { PostHero } from '@/heros/PostHero'
 
 export const metadata: Metadata = {
   description: 'Read our latest newsletters.',
@@ -40,42 +43,54 @@ export default async function NewslettersPage() {
   }
 
   return (
-    <div className="container-xl pt-16 pb-24">
-      <h1 className="text-4xl md:text-5xl font-bold mb-8">Newsletters</h1>
+    <>
+      <PostHero />
+      <div className="container mx-auto pt-16 pb-24 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <main className="lg:col-span-9">
+            <h1 className="text-4xl md:text-5xl font-bold mb-16">Sambodhi Newsletters</h1>
 
-      {(!newsletters.docs || newsletters.docs.length === 0) && (
-        <p className="mb-4">No newsletters found.</p>
-      )}
+            {(!newsletters.docs || newsletters.docs.length === 0) && (
+              <p className="mb-4">No newsletters found.</p>
+            )}
 
-      {newsletters.docs && newsletters.docs.length > 0 && (
-        <Grid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {newsletters.docs.map((newsletter) => {
-            return (
-              <Link
-                key={newsletter.id}
-                href={`/newsletters/${newsletter.slug}`}
-                className="block h-full transition-transform hover:-translate-y-1"
-              >
-                <Card className="h-full overflow-hidden flex flex-col">
-                  {newsletter.heroImage && typeof newsletter.heroImage !== 'string' && (
-                    <div className="aspect-video relative overflow-hidden bg-muted">
-                      <Media resource={newsletter.heroImage} fill imgClassName="object-cover" />
-                    </div>
-                  )}
-                  <CardHeader>
-                    <CardTitle className="line-clamp-2">{newsletter.title}</CardTitle>
-                    {newsletter.publishedAt && (
-                      <CardDescription>
-                        {new Date(newsletter.publishedAt).toLocaleDateString()}
-                      </CardDescription>
-                    )}
-                  </CardHeader>
-                </Card>
-              </Link>
-            )
-          })}
-        </Grid>
-      )}
-    </div>
+            {newsletters.docs && newsletters.docs.length > 0 && (
+              <Grid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {newsletters.docs.map((newsletter) => {
+                  return (
+                    <Link
+                      key={newsletter.id}
+                      href={`/newsletters/${newsletter.slug}`}
+                      className="block h-full transition-transform hover:-translate-y-1"
+                    >
+                      <Card className="h-full overflow-hidden flex flex-col">
+                        {newsletter.heroImage && typeof newsletter.heroImage !== 'string' && (
+                          <div className="aspect-video relative overflow-hidden bg-muted">
+                            <Media resource={newsletter.heroImage} fill imgClassName="object-cover" />
+                          </div>
+                        )}
+                        <CardHeader>
+                          <CardTitle className="line-clamp-2">{newsletter.title}</CardTitle>
+                          {newsletter.publishedAt && (
+                            <CardDescription>
+                              {new Date(newsletter.publishedAt).toLocaleDateString()}
+                            </CardDescription>
+                          )}
+                        </CardHeader>
+                      </Card>
+                    </Link>
+                  )
+                })}
+              </Grid>
+            )}
+          </main>
+
+          <aside className="lg:col-span-3 space-y-12">
+            <NewsSidebar />
+            <LinksSidebar />
+          </aside>
+        </div>
+      </div>
+    </>
   )
 }

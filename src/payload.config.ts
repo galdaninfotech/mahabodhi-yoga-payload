@@ -22,7 +22,8 @@ import { Posts } from '@/collections/Posts'
 import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
-import { Sidebar } from '@/globals/Sidebar'
+import { LinksSidebar } from '@/globals/LinksSidebar'
+import { NewsSidebar } from '@/globals/NewsSidebar'
 import { plugins } from './plugins'
 
 import { Newsletters } from './collections/Newsletters'
@@ -107,7 +108,7 @@ export default buildConfig({
   }),
   //email: nodemailerAdapter(),
   endpoints: [],
-  globals: [Header, Footer, Settings, SambodhiRetreatCentre, Sidebar],
+  globals: [Header, Footer, Settings, SambodhiRetreatCentre, LinksSidebar, NewsSidebar],
   plugins,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

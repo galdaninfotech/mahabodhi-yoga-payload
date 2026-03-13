@@ -19,10 +19,6 @@ export const hero: Field = {
           value: 'highImpact',
         },
         {
-          label: 'Medium Impact',
-          value: 'mediumImpact',
-        },
-        {
           label: 'Low Impact',
           value: 'lowImpact',
         },
@@ -37,7 +33,7 @@ export const hero: Field = {
         plural: 'Slides',
       },
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        condition: (_, { type } = {}) => ['highImpact'].includes(type),
         initCollapsed: true,
       },
       fields: [
@@ -57,15 +53,6 @@ export const hero: Field = {
         
       ],
       maxRows: 6,
-    },
-    {
-      name: 'media',
-      type: 'upload',
-      relationTo: 'media',
-      required: true,
-      admin: {
-        condition: (_, { type } = {}) => ['lowImpact'].includes(type),
-      },
     },
   ],
   label: false,

@@ -47,7 +47,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ slides }) => {
                   <div className="absolute inset-0 bg-black/40" />
                 </div>
               )}
-              <div className="container relative z-10 h-full flex flex-col items-center justify-center text-white text-center">
+              <div className="container relative z-10 h-full flex flex-col items-center justify-end text-center -mt-8">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -55,21 +55,21 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ slides }) => {
                   className="max-w-4xl px-4"
                 >
                   {slide.title && (
-                    <motion.h1 
+                    <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
-                      className="text-4xl md:text-6xl font-bold mb-4"
+                      className="text-[#d19a4a] text-xl md:text-2xl uppercase font-bold mb-3"
                     >
                       {slide.title}
-                    </motion.h1>
+                    </motion.div>
                   )}
                   {slide.subtitle && (
                     <motion.p 
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ duration: 0.6, delay: 0.4 }}
-                      className="text-lg md:text-2xl opacity-90"
+                      className="text-white text-lg md:text-2xl opacity-90"
                     >
                       {slide.subtitle}
                     </motion.p>
