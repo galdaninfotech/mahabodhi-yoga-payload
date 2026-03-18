@@ -140,8 +140,22 @@ export default buildConfig({
 
         const authHeader = req.headers.get('authorization')
         const customHeader = req.headers.get('x-cron-secret')
+        const authMatches = authHeader === `Bearer ${cronSecret}`
+        const customMatches = customHeader === cronSecret
 
-        return authHeader === `Bearer ${cronSecret}` || customHeader === cronSecret
+        req.payload.logger.info({
+          msg: 'Jobs access check',
+          hasCronSecret: Boolean(cronSecret),
+          cronSecretLength: cronSecret.length,
+          hasAuthHeader: Boolean(authHeader),
+          authHeaderLength: authHeader?.length ?? 0,
+          hasCustomHeader: Boolean(customHeader),
+          customHeaderLength: customHeader?.length ?? 0,
+          authMatches,
+          customMatches,
+        })
+
+        return authMatches || customMatches
       },
     },
     tasks: [
