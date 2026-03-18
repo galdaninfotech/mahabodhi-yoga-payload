@@ -26,7 +26,6 @@ import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { LinksSidebar } from '@/globals/LinksSidebar'
 import { NewsSidebar } from '@/globals/NewsSidebar'
-import { jobsDebugAuthEndpoint } from '@/endpoints/jobsDebugAuth'
 import { plugins } from './plugins'
 import { getServerSideURL } from './utilities/getURL'
 
@@ -111,7 +110,7 @@ export default buildConfig({
       ]
     },
   }),
-  endpoints: [jobsDebugAuthEndpoint],
+  endpoints: [],
   globals: [Header, Footer, Settings, SambodhiRetreatCentre, LinksSidebar, NewsSidebar],
   plugins,
   secret: process.env.PAYLOAD_SECRET || '',
@@ -143,20 +142,6 @@ export default buildConfig({
         const customHeader = req.headers.get('x-cron-secret')
         const authMatches = authHeader === `Bearer ${cronSecret}`
         const customMatches = customHeader === cronSecret
-
-        console.log(
-          'Jobs access check:',
-          JSON.stringify({
-            hasCronSecret: Boolean(cronSecret),
-            cronSecretLength: cronSecret.length,
-            hasAuthHeader: Boolean(authHeader),
-            authHeaderLength: authHeader?.length ?? 0,
-            hasCustomHeader: Boolean(customHeader),
-            customHeaderLength: customHeader?.length ?? 0,
-            authMatches,
-            customMatches,
-          }),
-        )
 
         return authMatches || customMatches
       },
