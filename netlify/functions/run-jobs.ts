@@ -12,11 +12,14 @@ export default async (req: Request) => {
   console.log('Triggering Payload Jobs at:', serverURL)
 
   try {
-    const response = await fetch(`${serverURL}/api/jobs/trigger`, {
-      method: 'POST',
+    const jobsURL = new URL('/api/payload-jobs/run', serverURL)
+    jobsURL.searchParams.set('queue', 'default')
+    jobsURL.searchParams.set('limit', '10')
+
+    const response = await fetch(jobsURL, {
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${cronSecret}`,
-        'Content-Type': 'application/json',
       },
     })
 

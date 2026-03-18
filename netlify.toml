@@ -2,5 +2,5 @@
   command = "npm run build"
   publish = ".next"
 
-[functions."payload-jobs"]
+[functions."run-jobs"]
   schedule = "*/5 * * * *"
