@@ -26,7 +26,6 @@ import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { LinksSidebar } from '@/globals/LinksSidebar'
 import { NewsSidebar } from '@/globals/NewsSidebar'
-import { jobsTriggerEndpoint } from '@/endpoints/jobsTrigger'
 import { plugins } from './plugins'
 import { getServerSideURL } from './utilities/getURL'
 
@@ -111,7 +110,7 @@ export default buildConfig({
       ]
     },
   }),
-  endpoints: [jobsTriggerEndpoint],
+  endpoints: [],
   globals: [Header, Footer, Settings, SambodhiRetreatCentre, LinksSidebar, NewsSidebar],
   plugins,
   secret: process.env.PAYLOAD_SECRET || '',

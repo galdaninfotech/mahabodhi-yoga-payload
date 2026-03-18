@@ -1,63 +1,19 @@
-import type { Config } from "@netlify/functions"
+import type { Config } from '@netlify/functions'
+import { getPayload } from 'payload'
 
-export default async (req: Request) => {
-  const serverURL = process.env.NEXT_PUBLIC_SERVER_URL
-  const cronSecret = process.env.CRON_SECRET
+import payloadConfig from '../../src/payload.config'
 
-  if (!serverURL || !cronSecret) {
-    console.error('Missing NEXT_PUBLIC_SERVER_URL or CRON_SECRET')
-    return new Response('Configuration missing', { status: 500 })
-  }
-
-  console.log('Triggering Payload Jobs at:', serverURL)
-
+export default async () => {
   try {
-    const jobsURL = new URL('/api/jobs/trigger', serverURL)
+    console.log('Running Payload jobs directly from Netlify scheduled function')
 
-    console.log('Payload Jobs Request:', JSON.stringify({
-      url: jobsURL.toString(),
-      method: 'POST',
-      hasCronSecret: Boolean(cronSecret),
-      cronSecretLength: cronSecret.length,
-      userAgent: req.headers.get('user-agent'),
-    }))
-
-    const response = await fetch(jobsURL, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${cronSecret}`,
-      },
+    const payload = await getPayload({ config: payloadConfig as any })
+    const result = await payload.jobs.run({
+      allQueues: true,
+      limit: 10,
     })
 
-    const rawBody = await response.text()
-    let result: unknown = rawBody
-
-    try {
-      result = JSON.parse(rawBody)
-    } catch {
-      result = rawBody
-    }
-
-    console.log('Payload Jobs Response:', JSON.stringify({
-      ok: response.ok,
-      status: response.status,
-      statusText: response.statusText,
-      result,
-    }))
-
-    if (!response.ok) {
-      return new Response(JSON.stringify({
-        success: false,
-        status: response.status,
-        statusText: response.statusText,
-        result,
-      }), {
-        status: response.status,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-    }
+    console.log('Payload Jobs Result:', JSON.stringify(result))
 
     return new Response(JSON.stringify({ success: true, result }), {
       status: 200,
@@ -66,13 +22,19 @@ export default async (req: Request) => {
       },
     })
   } catch (error) {
-    console.error('Error triggering jobs:', error)
-    return new Response(JSON.stringify({ error: 'Failed to trigger jobs' }), {
+    const message = error instanceof Error ? error.message : 'Failed to run jobs'
+
+    console.error('Error running Payload jobs:', error)
+
+    return new Response(JSON.stringify({ success: false, error: message }), {
       status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
   }
 }
 
 export const config: Config = {
-  schedule: "*/5 * * * *"
+  schedule: '*/5 * * * *',
 }
