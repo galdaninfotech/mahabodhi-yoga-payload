@@ -110,8 +110,8 @@ export default async function NewsletterPage({ params }: Args) {
         >
           <div className="absolute inset-0 z-0 h-full w-full">
             <Media resource={newsletter.heroImage} fill imgClassName="object-cover" priority />
-            <div className="absolute inset-0 bg-black/60" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+            <div className="absolute inset-0 bg-black/40" />
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" /> */}
           </div>
           <div className="relative z-10 w-full max-w-3xl mx-auto px-4 pt-48 pb-16 text-center text-white md:pt-[22rem] md:pb-24">
             <h1 style={{ color: 'white' }} className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">{newsletter.title}</h1>
