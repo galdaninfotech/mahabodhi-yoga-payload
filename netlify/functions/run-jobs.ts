@@ -1,5 +1,15 @@
 import type { Config } from '@netlify/functions'
 
+const parseResponseBody = async (response: Response) => {
+  const rawBody = await response.text()
+
+  try {
+    return JSON.parse(rawBody)
+  } catch {
+    return rawBody
+  }
+}
+
 export default async () => {
   const serverURL = process.env.NEXT_PUBLIC_SERVER_URL
   const cronSecret = process.env.CRON_SECRET
@@ -32,7 +42,7 @@ export default async () => {
       method: 'GET',
       headers,
     })
-    const schedulesResult = await schedulesResponse.json()
+    const schedulesResult = await parseResponseBody(schedulesResponse)
 
     console.log('Payload handle-schedules response:', JSON.stringify({
       ok: schedulesResponse.ok,
@@ -73,7 +83,7 @@ export default async () => {
       method: 'GET',
       headers,
     })
-    const runResult = await runResponse.json()
+    const runResult = await parseResponseBody(runResponse)
 
     console.log('Payload run response:', JSON.stringify({
       ok: runResponse.ok,
