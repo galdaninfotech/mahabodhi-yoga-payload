@@ -12,24 +12,33 @@ export default async (req: Request) => {
   console.log('Triggering Payload Jobs at:', siteUrl)
   
   try {
-    const res = await fetch(`${siteUrl}/api/payload-jobs/run`, {
-      method: 'POST',
+    // In Payload 3.0, the runner endpoint is GET /api/payload-jobs/run
+    const res = await fetch(`${siteUrl}/api/payload-jobs/run?allQueues=true`, {
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${cronSecret}`,
-        'Content-Type': 'application/json',
       },
     });
     
     if (!res.ok) {
       const errorText = await res.text();
       console.error(`Failed to run jobs: ${res.status} ${errorText}`);
-      return new Response(`Error: ${res.status}`, { status: res.status });
+      return new Response(`Error: ${res.status} ${errorText}`, { status: res.status });
     }
     
-    return new Response("Jobs triggered successfully", { status: 200 });
+    const result = await res.json();
+    console.log('Payload Jobs Result:', JSON.stringify(result));
+    
+    return new Response(JSON.stringify({ success: true, result }), { 
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error('Error triggering payload jobs:', error);
-    return new Response('Internal Server Error', { status: 500 });
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 };
 
