@@ -1,21 +1,94 @@
 import type { Config } from '@netlify/functions'
-import { getPayload } from 'payload'
-
-import payloadConfig from '../../src/payload.config'
 
 export default async () => {
-  try {
-    console.log('Running Payload jobs directly from Netlify scheduled function')
+  const serverURL = process.env.NEXT_PUBLIC_SERVER_URL
+  const cronSecret = process.env.CRON_SECRET
 
-    const payload = await getPayload({ config: payloadConfig as any })
-    const result = await payload.jobs.run({
-      allQueues: true,
-      limit: 10,
+  if (!serverURL || !cronSecret) {
+    console.error('Missing NEXT_PUBLIC_SERVER_URL or CRON_SECRET')
+    return new Response(JSON.stringify({ success: false, error: 'Configuration missing' }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
+  }
 
-    console.log('Payload Jobs Result:', JSON.stringify(result))
+  try {
+    const handleSchedulesURL = new URL('/api/payload-jobs/handle-schedules', serverURL)
+    handleSchedulesURL.searchParams.set('queue', 'default')
 
-    return new Response(JSON.stringify({ success: true, result }), {
+    const runJobsURL = new URL('/api/payload-jobs/run', serverURL)
+    runJobsURL.searchParams.set('queue', 'default')
+    runJobsURL.searchParams.set('limit', '10')
+
+    const headers = {
+      Authorization: `Bearer ${cronSecret}`,
+    }
+
+    console.log('Triggering Payload job schedules at:', handleSchedulesURL.toString())
+    const schedulesResponse = await fetch(handleSchedulesURL, {
+      method: 'GET',
+      headers,
+    })
+    const schedulesResult = await schedulesResponse.json()
+
+    console.log('Payload handle-schedules response:', JSON.stringify({
+      ok: schedulesResponse.ok,
+      status: schedulesResponse.status,
+      statusText: schedulesResponse.statusText,
+      result: schedulesResult,
+    }))
+
+    if (!schedulesResponse.ok) {
+      return new Response(JSON.stringify({
+        success: false,
+        step: 'handle-schedules',
+        status: schedulesResponse.status,
+        statusText: schedulesResponse.statusText,
+        result: schedulesResult,
+      }), {
+        status: schedulesResponse.status,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
+
+    console.log('Triggering Payload jobs at:', runJobsURL.toString())
+    const runResponse = await fetch(runJobsURL, {
+      method: 'GET',
+      headers,
+    })
+    const runResult = await runResponse.json()
+
+    console.log('Payload run response:', JSON.stringify({
+      ok: runResponse.ok,
+      status: runResponse.status,
+      statusText: runResponse.statusText,
+      result: runResult,
+    }))
+
+    if (!runResponse.ok) {
+      return new Response(JSON.stringify({
+        success: false,
+        step: 'run',
+        status: runResponse.status,
+        statusText: runResponse.statusText,
+        result: runResult,
+      }), {
+        status: runResponse.status,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
+
+    return new Response(JSON.stringify({
+      success: true,
+      handleSchedules: schedulesResult,
+      run: runResult,
+    }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',

@@ -142,14 +142,6 @@ export default buildConfig({
         return authHeader === `Bearer ${process.env.CRON_SECRET}`
       },
     },
-    autoRun: [
-      {
-        // cron: '* * * * *', // Run every minute to check for new jobs
-        cron: '*/5 * * * *', // Run every 5 minutes
-        limit: 10, // limit jobs to process each run
-        queue: 'default',
-      },
-    ],
     tasks: [
       {
         slug: 'sendNewsletterEmail',
