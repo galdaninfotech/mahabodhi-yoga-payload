@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import {
   BoldFeature,
   EXPERIMENTAL_TableFeature,
@@ -20,11 +21,13 @@ import { Media } from '@/collections/Media'
 import { Pages } from '@/collections/Pages'
 import { Posts } from '@/collections/Posts'
 import { Users } from '@/collections/Users'
+import { Programmes } from '@/collections/Programmes'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { LinksSidebar } from '@/globals/LinksSidebar'
 import { NewsSidebar } from '@/globals/NewsSidebar'
 import { plugins } from './plugins'
+import { getServerSideURL } from './utilities/getURL'
 
 import { Newsletters } from './collections/Newsletters'
 import { Subscribers } from './collections/Subscribers'
@@ -60,6 +63,7 @@ export default buildConfig({
     Posts,
     Categories,
     ProgrammeCategories,
+    Programmes,
     Media,
     Newsletters,
     Subscribers,
@@ -106,7 +110,6 @@ export default buildConfig({
       ]
     },
   }),
-  //email: nodemailerAdapter(),
   endpoints: [],
   globals: [Header, Footer, Settings, SambodhiRetreatCentre, LinksSidebar, NewsSidebar],
   plugins,
@@ -114,6 +117,18 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.SMTP_FROM_ADDRESS || 'info@ladakhmoto.com',
+    defaultFromName: process.env.SMTP_FROM_NAME || 'Ladakh Moto',
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    },
+  }),
   jobs: {
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {
@@ -169,16 +184,56 @@ export default buildConfig({
         ],
         handler: async ({ input, job, req }) => {
           const { newsletterId, subscriberId, to, subject, html } = input
-          
-          // Convert IDs to numbers if they are numeric strings if necessary
+
+          // Convert IDs to numbers if they are numeric strings, as SQLite uses integers for IDs
           const nId = !isNaN(Number(newsletterId)) ? Number(newsletterId) : newsletterId
           const sId = !isNaN(Number(subscriberId)) ? Number(subscriberId) : subscriberId
 
           try {
+            // Fetch the newsletter to check for PDF attachment
+            const newsletter = await req.payload.findByID({
+              collection: 'newsletters',
+              id: nId,
+              depth: 1, // To populate the heroImage/predesignedPDF media
+            })
+
+            const attachments: any[] = []
+
+            if (newsletter && newsletter.predesignedPDF && typeof newsletter.predesignedPDF === 'object') {
+              const pdf = newsletter.predesignedPDF
+              
+              // Sanitize title for filename
+              const safeTitle = newsletter.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()
+              const filename = `${safeTitle}.pdf`
+
+              try {
+                // Fetch the file buffer directly to avoid HTTP fetching issues during background jobs
+                const fileRes = await fetch(pdf.url!.startsWith('http') ? pdf.url! : `${getServerSideURL()}${pdf.url}`)
+                if (fileRes.ok) {
+                  const arrayBuffer = await fileRes.arrayBuffer()
+                  attachments.push({
+                    filename,
+                    content: Buffer.from(arrayBuffer),
+                    contentType: pdf.mimeType || 'application/pdf',
+                  })
+                }
+              } catch (fetchError) {
+                console.error('Failed to fetch PDF buffer, falling back to path:', fetchError)
+                // Fallback to path if buffer fetch fails
+                const serverURL = getServerSideURL()
+                const attachmentPath = pdf.url!.startsWith('http') ? pdf.url! : `${serverURL}${pdf.url}`
+                attachments.push({
+                  filename,
+                  path: attachmentPath,
+                })
+              }
+            }
+
             await req.payload.sendEmail({
               to,
               subject,
               html,
+              attachments,
             })
 
             // Log success
@@ -199,7 +254,7 @@ export default buildConfig({
             }
           } catch (error: any) {
             console.error(`Failed to send email to ${to}:`, error)
-            
+
             // Log failure
             try {
               await req.payload.create({

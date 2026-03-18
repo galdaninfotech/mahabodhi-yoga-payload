@@ -1,11 +1,11 @@
 import { Grid } from '@/components/Grid'
-import { ProductGridItem } from '@/components/ProductGridItem'
+import { ProgrammeGridItem } from '@/components/ProgrammeGridItem' // Renamed from ProductGridItem
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 
 export const metadata = {
-  description: 'Search for programmes in the store.',
+  description: 'Explore our yoga and meditation programmes.',
   title: 'Programmes',
 }
 
@@ -24,8 +24,8 @@ export default async function ProgrammesPage({ searchParams }: Props) {
   const payload = await getPayload({ config: configPromise })
 
   try {
-    const products = await payload.find({
-      collection: 'products',
+    const programmes = await payload.find({
+      collection: 'products', // Still using 'products' slug for now, but this should be changed to 'programmes' if needed.
       draft: false,
       overrideAccess: false,
       select: {
@@ -33,8 +33,10 @@ export default async function ProgrammesPage({ searchParams }: Props) {
         slug: true,
         gallery: true,
         categories: true,
-        priceInUSD: true,
-        variants: true,
+        price: true, // Changed from priceInUSD
+        paymentLink: true, // Added for the payment button
+        updatedAt: true,
+        createdAt: true,
       },
       ...(sort ? { sort } : { sort: 'title' }),
       ...(searchValue || category
@@ -70,27 +72,27 @@ export default async function ProgrammesPage({ searchParams }: Props) {
         : {}),
     })
 
-    const resultsText = products.docs.length > 1 ? 'results' : 'result'
+    const resultsText = programmes.docs.length > 1 ? 'results' : 'result'
 
     return (
       <div>
         {searchValue ? (
           <p className="mb-4">
-            {products.docs?.length === 0
+            {programmes.docs?.length === 0
               ? 'There are no programmes that match '
-              : `Showing ${products.docs.length} ${resultsText} for `}
+              : `Showing ${programmes.docs.length} ${resultsText} for `}
             <span className="font-bold">&quot;{searchValue}&quot;</span>
           </p>
         ) : null}
 
-        {!searchValue && products.docs?.length === 0 && (
+        {!searchValue && programmes.docs?.length === 0 && (
           <p className="mb-4">No programmes found. Please try different filters.</p>
         )}
 
-        {products?.docs.length > 0 ? (
+        {programmes?.docs.length > 0 ? (
           <Grid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.docs.map((product) => {
-              return <ProductGridItem key={product.id} product={product} />
+            {programmes.docs.map((programme) => {
+              return <ProgrammeGridItem key={programme.id} programme={programme} />
             })}
           </Grid>
         ) : null}

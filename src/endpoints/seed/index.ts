@@ -5,7 +5,6 @@ import { seedUsers } from './users'
 import { seedForms } from './forms'
 import { seedProducts } from './products'
 import { seedPages } from './pages'
-import { seedEcommerce } from './ecommerce'
 import { seedGlobals } from './globals'
 import { seedNewsletters } from './newsletters'
 import { seedPosts } from './news-posts'
@@ -18,19 +17,12 @@ const collections: CollectionSlug[] = [
   'newsletters',
   'form-submissions',
   'forms',
-  'transactions',
-  'orders',
-  'carts',
-  'variants',
-  'variantOptions',
-  'variantTypes',
   'products',
   'categories',
   'programme-categories',
   'media',
   'pages',
   'posts',
-  'addresses',
 ]
 
 export const seed = async ({
@@ -71,12 +63,6 @@ export const seed = async ({
     payload, 
     contactForm,
     mediaMap
-  })
-  
-  await seedEcommerce({ 
-    payload, 
-    customer, 
-    products 
   })
   
   await seedGlobals({ 

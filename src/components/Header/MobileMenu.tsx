@@ -57,7 +57,7 @@ export function MobileMenu({ menu }: Props) {
 
       <SheetContent side="left" className="px-4">
         <SheetHeader className="px-0 pt-4 pb-0 text-left">
-          <SheetTitle>My Store</SheetTitle>
+          <SheetTitle>Menu</SheetTitle>
 
           <SheetDescription />
         </SheetHeader>
@@ -100,40 +100,17 @@ export function MobileMenu({ menu }: Props) {
           ) : null}
         </div>
 
-        {user ? (
+        {user && (
           <div className="mt-4">
-            <h2 className="text-xl mb-4">My account</h2>
+            <h2 className="text-xl mb-4">Account</h2>
             <hr className="my-2 border-neutral-100 dark:border-neutral-800" />
             <ul className="flex flex-col gap-2">
-              <li>
-                <Link href="/orders">Orders</Link>
-              </li>
-              <li>
-                <Link href="/account/addresses">Addresses</Link>
-              </li>
-              <li>
-                <Link href="/account">Manage account</Link>
-              </li>
-              <li className="mt-6">
+              <li className="mt-2">
                 <Button asChild variant="outline">
-                  <Link href="/logout">Log out</Link>
+                  <a href="/admin/logout">Log out</a>
                 </Button>
               </li>
             </ul>
-          </div>
-        ) : (
-          <div className="mt-4">
-            <h2 className="text-xl mb-4">My account</h2>
-            <hr className="my-2 border-neutral-100 dark:border-neutral-800" />
-            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
-              <Button asChild className="w-full sm:flex-1" variant="outline">
-                <Link href="/login">Log in</Link>
-              </Button>
-              <span className="text-center text-sm text-muted-foreground sm:text-base">or</span>
-              <Button asChild className="w-full sm:flex-1">
-                <Link href="/create-account">Create an account</Link>
-              </Button>
-            </div>
           </div>
         )}
       </SheetContent>

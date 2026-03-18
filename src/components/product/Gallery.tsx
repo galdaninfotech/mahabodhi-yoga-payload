@@ -1,5 +1,4 @@
 'use client'
-
 import type { Media as MediaType, Product } from '@/payload-types'
 
 import { Media } from '@/components/Media'
@@ -11,11 +10,13 @@ import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/componen
 import { DefaultDocumentIDType } from 'payload'
 
 type Props = {
-  gallery: NonNullable<Product['gallery']>
+  gallery: {
+    image: MediaType
+    id?: string | null
+  }[]
 }
 
 export const Gallery: React.FC<Props> = ({ gallery }) => {
-  const searchParams = useSearchParams()
   const [current, setCurrent] = React.useState(0)
   const [api, setApi] = React.useState<CarouselApi>()
 
@@ -24,28 +25,6 @@ export const Gallery: React.FC<Props> = ({ gallery }) => {
       return
     }
   }, [api])
-
-  useEffect(() => {
-    const values = Array.from(searchParams.values())
-
-    if (values && api) {
-      const index = gallery.findIndex((item) => {
-        if (!item.variantOption) return false
-
-        let variantID: DefaultDocumentIDType
-
-        if (typeof item.variantOption === 'object') {
-          variantID = item.variantOption.id
-        } else variantID = item.variantOption
-
-        return Boolean(values.find((value) => value === String(variantID)))
-      })
-      if (index !== -1) {
-        setCurrent(index)
-        api.scrollTo(index, true)
-      }
-    }
-  }, [searchParams, api, gallery])
 
   return (
     <div>

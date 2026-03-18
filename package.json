@@ -29,7 +29,6 @@
     "@payloadcms/email-nodemailer": "3.79.0",
     "@payloadcms/live-preview-react": "3.79.0",
     "@payloadcms/next": "3.79.0",
-    "@payloadcms/plugin-ecommerce": "3.79.0",
     "@payloadcms/plugin-form-builder": "3.79.0",
     "@payloadcms/plugin-seo": "3.79.0",
     "@payloadcms/richtext-lexical": "3.79.0",
@@ -41,8 +40,6 @@
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
-    "@stripe/react-stripe-js": "^3",
-    "@stripe/stripe-js": "^4.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cross-env": "^7.0.3",
@@ -69,7 +66,6 @@
     "react-markdown": "^10.1.0",
     "sharp": "0.34.2",
     "sonner": "^1.7.2",
-    "stripe": "18.5.0",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

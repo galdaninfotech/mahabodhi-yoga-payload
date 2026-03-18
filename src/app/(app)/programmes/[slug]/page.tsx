@@ -1,9 +1,8 @@
-import type { Media, Product } from '@/payload-types'
+import type { Media, Product } from '@/payload-types' // Keep Product type for now as the collection slug is still 'products'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { GridTileImage } from '@/components/Grid/tile'
-import { Gallery } from '@/components/product/Gallery'
-import { ProductDescription } from '@/components/product/ProductDescription'
+import { Gallery } from '@/components/product/Gallery' // Component might need adjustment if it relies on variant-specific logic
+import { ProgrammeDescription } from '@/components/product/ProgrammeDescription' // New component for description
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
@@ -20,21 +19,22 @@ type Args = {
   }>
 }
 
+// Assuming Programme type will be available or Product type can be used as a base
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug } = await params
-  const product = await queryProductBySlug({ slug })
+  const programme = await queryProgrammeBySlug({ slug }) // Changed function name
 
-  if (!product) return notFound()
+  if (!programme) return notFound()
 
-  const gallery = product.gallery?.filter((item) => typeof item.image === 'object') || []
-
-  const metaImage = typeof product.meta?.image === 'object' ? product.meta?.image : undefined
-  const canIndex = product._status === 'published'
+  // Adjustments for gallery and meta image structure if needed
+  const gallery = programme.gallery?.filter((item) => typeof item.image === 'object') || []
+  const metaImage = typeof programme.meta?.image === 'object' ? programme.meta.image : undefined
+  const canIndex = programme._status === 'published'
 
   const seoImage = metaImage || (gallery.length ? (gallery[0]?.image as Media) : undefined)
 
   return {
-    description: product.meta?.description || '',
+    description: programme.meta?.description || '',
     openGraph: seoImage?.url
       ? {
           images: [
@@ -55,65 +55,49 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
       },
       index: canIndex,
     },
-    title: product.meta?.title || product.title,
+    title: programme.meta?.title || programme.title,
   }
 }
 
 export default async function ProgrammePage({ params }: Args) {
   const { slug } = await params
-  const product = await queryProductBySlug({ slug })
+  const programme = await queryProgrammeBySlug({ slug }) // Changed function name
 
-  if (!product) return notFound()
+  if (!programme) return notFound()
 
+  // Adjustments for gallery structure if needed
   const gallery =
-    product.gallery
+    programme.gallery
       ?.filter((item) => typeof item.image === 'object')
       .map((item) => ({
         ...item,
         image: item.image as Media,
       })) || []
 
-  const metaImage = typeof product.meta?.image === 'object' ? product.meta?.image : undefined
-  const hasStock = product.enableVariants
-    ? product?.variants?.docs?.some((variant) => {
-        if (typeof variant !== 'object') return false
-        return variant.inventory && variant?.inventory > 0
-      })
-    : product.inventory! > 0
+  const metaImage = typeof programme.meta?.image === 'object' ? programme.meta.image : undefined
+  // Removed variant/inventory specific logic as we're simplifying
 
-  let price = product.priceInUSD
+  const price = programme.price // Use the new price field
 
-  if (product.enableVariants && product?.variants?.docs?.length) {
-    price = product?.variants?.docs?.reduce((acc, variant) => {
-      if (typeof variant === 'object' && variant?.priceInUSD && acc && variant?.priceInUSD > acc) {
-        return variant.priceInUSD
-      }
-      return acc
-    }, price)
-  }
-
-  const productJsonLd = {
-    name: product.title,
+  const programmeJsonLd = {
+    name: programme.title,
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    description: product.description,
+    '@type': 'Product', // Schema.org type remains Product for general items
+    description: programme.description,
     image: metaImage?.url,
     offers: {
-      '@type': 'AggregateOffer',
-      availability: hasStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      '@type': 'Offer', // Changed from AggregateOffer to Offer as we have a single price
+      availability: 'https://schema.org/InStock', // Assuming always in stock for programmes
       price: price,
-      priceCurrency: 'usd',
+      priceCurrency: 'USD',
     },
   }
-
-  const relatedProducts =
-    product.relatedProducts?.filter((relatedProduct) => typeof relatedProduct === 'object') ?? []
 
   return (
     <React.Fragment>
       <script
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd),
+          __html: JSON.stringify(programmeJsonLd),
         }}
         type="application/ld+json"
       />
@@ -136,59 +120,36 @@ export default async function ProgrammePage({ params }: Args) {
           </div>
 
           <div className="basis-full lg:basis-1/2">
-            <ProductDescription product={product} />
+            {/* Use a new component or adapt ProductDescription */}
+            <ProgrammeDescription programme={programme} />
+            {programme.paymentLink && (
+              <Button
+                asChild
+                className="mt-4 w-full"
+                // onClick={() => window.open(programme.paymentLink, '_blank')} // Removed inline onClick for better practice, rely on href
+              >
+                <Link href={programme.paymentLink} target="_blank" rel="noopener noreferrer">
+                  Book Now
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>
 
-      {product.layout?.length ? <RenderBlocks blocks={product.layout} /> : <></>}
-
-      {relatedProducts.length ? (
-        <div className="container">
-          <RelatedProgrammes products={relatedProducts as Product[]} />
-        </div>
-      ) : (
-        <></>
-      )}
+      {programme.layout?.length ? <RenderBlocks blocks={programme.layout} /> : <></>}
     </React.Fragment>
   )
 }
 
-function RelatedProgrammes({ products }: { products: Product[] }) {
-  if (!products.length) return null
-
-  return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Programmes</h2>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
-        {products.map((product) => (
-          <li
-            className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-            key={product.id}
-          >
-            <Link className="relative h-full w-full" href={`/programmes/${product.slug}`}>
-              <GridTileImage
-                label={{
-                  amount: product.priceInUSD!,
-                  title: product.title,
-                }}
-                media={product.meta?.image as Media}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-const queryProductBySlug = async ({ slug }: { slug: string }) => {
+// Renamed function and updated it to use 'programmes' collection and fetch programme-specific fields
+const queryProgrammeBySlug = async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
-    collection: 'products',
+    collection: 'products', // Using 'products' slug as per backend config, but fetching Programme data
     depth: 3,
     draft,
     limit: 1,
@@ -204,13 +165,9 @@ const queryProductBySlug = async ({ slug }: { slug: string }) => {
         ...(draft ? [] : [{ _status: { equals: 'published' } }]),
       ],
     },
+    // Removed variant population as it's no longer relevant
     populate: {
-      variants: {
-        title: true,
-        priceInUSD: true,
-        inventory: true,
-        options: true,
-      },
+      categories: { title: true }, // Populate categories if needed for display
     },
   })
 

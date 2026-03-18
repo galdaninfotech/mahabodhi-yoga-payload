@@ -51,11 +51,10 @@ export const seedProducts = async ({
       slug: '7-day-silent-meditation-retreat',
       description: 'A transformative 7-day silent meditation retreat in the heart of the mountains.',
       price: 50000,
+      paymentLink: 'https://buy.stripe.com/test_retreat',
       galleryImage: hero,
       metaImage: hero,
-      variantTypes: [],
       categories: [retreatsCategory],
-      relatedProducts: [],
     }),
     context: {
       disableRevalidate: true,
@@ -70,11 +69,10 @@ export const seedProducts = async ({
       slug: 'beginner-hatha-yoga-course',
       description: 'Master the basics of Hatha yoga in this 4-week comprehensive course.',
       price: 25000,
+      paymentLink: 'https://buy.stripe.com/test_course',
       galleryImage: hero,
       metaImage: hero,
-      variantTypes: [],
       categories: [coursesCategory],
-      relatedProducts: [retreat],
     }),
     context: {
       disableRevalidate: true,
@@ -86,14 +84,5 @@ export const seedProducts = async ({
     retreatsCategory,
     productRetreat: retreat,
     productCourse: course,
-    // Maintaining compatibility with other seed scripts if they expect these keys
-    accessoriesCategory, 
-    productHat: retreat,
-    productTshirt: course,
-    // Variants are not needed for courses yet, but we provide nulls to avoid errors in seedEcommerce
-    smallTshirtHoodieVariant: null,
-    mediumTshirtHoodieVariant: null,
-    largeTshirtHoodieVariant: null,
-    xlargeTshirtHoodieVariant: null,
   }
 }

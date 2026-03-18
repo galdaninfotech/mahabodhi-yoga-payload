@@ -1,31 +1,26 @@
-import type { Category, Product, VariantType } from '@/payload-types'
-import type { Media } from '@/payload-types'
+import type { Media, ProgrammeCategory } from '@/payload-types'
 import { RequiredDataFromCollectionSlug } from 'payload'
 
 type ProductArgs = {
   galleryImage: Media
   metaImage: Media
-  variantTypes: VariantType[]
-  categories: Category[]
-  relatedProducts: Product[]
+  categories: ProgrammeCategory[]
   title: string
   slug: string
   description: string
   price: number
-  inventory?: number
+  paymentLink: string
 }
 
 export const courseData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'products'> = ({
   galleryImage,
-  relatedProducts,
   metaImage,
-  variantTypes,
   categories,
   title,
   slug,
   description,
   price,
-  inventory = 100,
+  paymentLink,
 }) => {
   return {
     meta: {
@@ -70,9 +65,7 @@ export const courseData: (args: ProductArgs) => RequiredDataFromCollectionSlug<'
     gallery: [{ image: galleryImage }],
     title: title,
     slug: slug,
-    priceInUSDEnabled: true,
-    priceInUSD: price,
-    relatedProducts: relatedProducts,
-    inventory: inventory,
+    price: price,
+    paymentLink: paymentLink,
   }
 }
