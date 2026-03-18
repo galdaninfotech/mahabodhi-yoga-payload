@@ -41,7 +41,15 @@ export default async () => {
       result: schedulesResult,
     }))
 
-    if (!schedulesResponse.ok) {
+    const noSchedulesDefined =
+      schedulesResponse.status === 500 &&
+      schedulesResult &&
+      typeof schedulesResult === 'object' &&
+      'message' in schedulesResult &&
+      schedulesResult.message ===
+        'Cannot handle schedules because no tasks or workflows with schedules are defined.'
+
+    if (!schedulesResponse.ok && !noSchedulesDefined) {
       return new Response(JSON.stringify({
         success: false,
         step: 'handle-schedules',
@@ -54,6 +62,10 @@ export default async () => {
           'Content-Type': 'application/json',
         },
       })
+    }
+
+    if (noSchedulesDefined) {
+      console.log('No schedulable jobs defined; continuing to run queued jobs.')
     }
 
     console.log('Triggering Payload jobs at:', runJobsURL.toString())
