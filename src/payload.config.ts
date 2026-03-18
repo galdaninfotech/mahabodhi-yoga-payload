@@ -143,17 +143,19 @@ export default buildConfig({
         const authMatches = authHeader === `Bearer ${cronSecret}`
         const customMatches = customHeader === cronSecret
 
-        req.payload.logger.info({
-          msg: 'Jobs access check',
-          hasCronSecret: Boolean(cronSecret),
-          cronSecretLength: cronSecret.length,
-          hasAuthHeader: Boolean(authHeader),
-          authHeaderLength: authHeader?.length ?? 0,
-          hasCustomHeader: Boolean(customHeader),
-          customHeaderLength: customHeader?.length ?? 0,
-          authMatches,
-          customMatches,
-        })
+        console.log(
+          'Jobs access check:',
+          JSON.stringify({
+            hasCronSecret: Boolean(cronSecret),
+            cronSecretLength: cronSecret.length,
+            hasAuthHeader: Boolean(authHeader),
+            authHeaderLength: authHeader?.length ?? 0,
+            hasCustomHeader: Boolean(customHeader),
+            customHeaderLength: customHeader?.length ?? 0,
+            authMatches,
+            customMatches,
+          }),
+        )
 
         return authMatches || customMatches
       },
