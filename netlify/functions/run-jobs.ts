@@ -24,6 +24,7 @@ export default async () => {
 
     const headers = {
       Authorization: `Bearer ${cronSecret}`,
+      'x-cron-secret': cronSecret,
     }
 
     console.log('Triggering Payload job schedules at:', handleSchedulesURL.toString())

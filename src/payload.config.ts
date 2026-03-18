@@ -135,11 +135,13 @@ export default buildConfig({
         // Allow logged in users to execute this endpoint (default)
         if (req.user) return true
 
-        // If there is no logged in user, then check
-        // for the cron secret to be present as an
-        // Authorization header.
+        const cronSecret = process.env.CRON_SECRET
+        if (!cronSecret) return false
+
         const authHeader = req.headers.get('authorization')
-        return authHeader === `Bearer ${process.env.CRON_SECRET}`
+        const customHeader = req.headers.get('x-cron-secret')
+
+        return authHeader === `Bearer ${cronSecret}` || customHeader === cronSecret
       },
     },
     tasks: [
