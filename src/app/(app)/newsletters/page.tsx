@@ -42,6 +42,7 @@ export default async function NewslettersPage() {
     throw error
   }
 
+  // console.log(newsletters)
   return (
     <>
       <PostHero />

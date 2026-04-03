@@ -10,34 +10,47 @@ export const revalidatePost: CollectionAfterChangeHook<Post> = ({
   req: { payload, context },
 }) => {
   if (!context.disableRevalidate) {
-    if (doc._status === 'published') {
-      const path = `/newsletter-posts/${doc.slug}`
+    try {
+      if (doc._status === 'published') {
+        const path = `/newsletters/${doc.slug}`
 
-      payload.logger.info(`Revalidating post at path: ${path}`)
+        payload.logger.info(`Revalidating newsletter at path: ${path}`)
 
-      revalidatePath(path)
-      revalidateTag('posts-sitemap', 'max')
-    }
+        revalidatePath(path)
+        revalidatePath('/newsletters')
+        revalidateTag('posts-sitemap', 'max')
+      }
 
-    // If the post was previously published, we need to revalidate the old path
-    if (previousDoc._status === 'published' && doc._status !== 'published') {
-      const oldPath = `/newsletter-posts/${previousDoc.slug}`
+      // If the newsletter was previously published, we need to revalidate the old path
+      if (previousDoc._status === 'published' && doc._status !== 'published') {
+        const oldPath = `/newsletters/${previousDoc.slug}`
 
-      payload.logger.info(`Revalidating old post at path: ${oldPath}`)
+        payload.logger.info(`Revalidating old newsletter at path: ${oldPath}`)
 
-      revalidatePath(oldPath)
-      revalidateTag('newsletter-posts-sitemap', 'max')
+        revalidatePath(oldPath)
+        revalidatePath('/newsletters')
+        revalidateTag('posts-sitemap', 'max')
+      }
+    } catch (err) {
+      payload.logger.error(`Error revalidating newsletter: ${err}`)
     }
   }
   return doc
 }
 
-export const revalidateDelete: CollectionAfterDeleteHook<Post> = ({ doc, req: { context } }) => {
+export const revalidateDelete: CollectionAfterDeleteHook<Post> = ({ doc, req: { payload, context } }) => {
   if (!context.disableRevalidate) {
-    const path = `/newsletter-posts/${doc?.slug}`
+    try {
+      const path = `/newsletters/${doc?.slug}`
 
-    revalidatePath(path)
-    revalidateTag('newsletter-posts-sitemap', 'max')
+      payload.logger.info(`Revalidating deleted newsletter at path: ${path}`)
+
+      revalidatePath(path)
+      revalidatePath('/newsletters')
+      revalidateTag('posts-sitemap', 'max')
+    } catch (err) {
+      payload.logger.error(`Error revalidating deleted newsletter: ${err}`)
+    }
   }
 
   return doc
