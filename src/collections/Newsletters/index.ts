@@ -17,6 +17,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
+import { deleteNewsletterLogs } from './hooks/deleteNewsletterLogs'
 
 import {
   MetaDescriptionField,
@@ -361,6 +362,7 @@ export const Newsletters: CollectionConfig<'posts'> = {
     afterChange: [revalidatePost],
     afterRead: [populateAuthors],
     afterDelete: [revalidateDelete],
+    beforeDelete: [deleteNewsletterLogs],
   },
   versions: {
     drafts: {
