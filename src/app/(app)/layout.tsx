@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Suspense } from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/components/Footer'
@@ -76,7 +77,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <Providers>
           {/* <AdminBar /> */}
           <LivePreviewListener />
-          <PageNavigationProgress />
+          <Suspense fallback={null}>
+            <PageNavigationProgress />
+          </Suspense>
 
           <HeaderTop />
           <Header />
