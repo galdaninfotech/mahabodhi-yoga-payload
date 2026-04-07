@@ -84,6 +84,26 @@ export const helpConfig: HelpMapping = {
     filePath: 'https://docs.google.com/document/d/10LyjCtx-Z79s2B4D8LgQNMQUL94o5_GA6JPlrSZ8BKM/edit?usp=sharing',
     type: 'pdf',
   },
+  newsletters: {
+    title: 'Newsletter Management Guide',
+    filePath: '/docs/newsletters.md',
+    type: 'md',
+  },
+  subscribers: {
+    title: 'Subscribers Guide',
+    filePath: '/docs/subscribers.md',
+    type: 'md',
+  },
+  'subscriber-groups': {
+    title: 'Subscribers Group Guide',
+    filePath: '/docs/subscribers.md',
+    type: 'md',
+  },
+  'newsletter-logs': {
+    title: 'Newsletter Log Guide',
+    filePath: '/docs/logs.md',
+    type: 'md',
+  },
 }
 
 /**

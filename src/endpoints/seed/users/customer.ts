@@ -1,8 +1,9 @@
 import { RequiredDataFromCollectionSlug } from 'payload'
 
 export const customerData: RequiredDataFromCollectionSlug<'users'> = {
-  name: 'Customer',
-  email: 'customer@example.com',
+  name: 'Editor',
+  email: 'editor@mahabodhiyogacentre.com',
   password: 'password',
-  roles: ['customer'],
+  roles: ['admin'],
 }
+ 

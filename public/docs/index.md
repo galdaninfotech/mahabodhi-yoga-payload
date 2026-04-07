@@ -2,6 +2,9 @@
 
 Welcome to the Newsletter Management System documentation. This system is designed to provide a robust, automated way to manage your audience and communicate with them through professional newsletters.
 
+<br />
+<br />
+
 ## System Overview
 
 The system is built directly into your Admin Panel and consists of four main collections:
@@ -10,6 +13,9 @@ The system is built directly into your Admin Panel and consists of four main col
 2.  **Subscribers**: Manage your audience and their active status.
 3.  **Subscriber Groups**: Segment your audience for targeted messaging.
 4.  **Newsletter Logs**: Track the delivery status of every email sent.
+
+<br />
+<br />
 
 ## Core Workflow
 
@@ -20,23 +26,36 @@ The system is built directly into your Admin Panel and consists of four main col
 5.  **Delivery**: Send the newsletter to a specific group or individuals. The system automatically filters out inactive subscribers and prevents duplicate sends.
 6.  **Monitoring**: Review the logs to ensure successful delivery.
 
+<br />
+<br />
+
 ## Navigation
 
+- [**The Master Guide: Complete Newsletter Management**](./newsletter-management-master-guide.md)
 - [Managing Subscribers & Groups](./subscribers.md)
-- [Creating & Sending Newsletters](./newsletters.md)
 - [Understanding Logs & Delivery](./logs.md)
 - [Frontend Integration](./frontend.md)
+
+<br />
+<br />
 
 ## Testing & Growth
 
 To ensure the system remains stable as it grows, we have implemented comprehensive tests:
+
+<br />
 
 ### Integration Tests
 Focus on core logic, active status defaults, and sending rules.
 - **File**: `tests/int/newsletter.int.spec.ts`
 - **Run**: `pnpm test:int` (using Vitest)
 
+<br />
+
 ### E2E Tests
 Focus on the full user journey from sign-up to admin delivery.
 - **File**: `tests/e2e/newsletter.e2e.spec.ts`
 - **Run**: `pnpm test:e2e` (using Playwright)
+
+<br />
+<br />

@@ -4,6 +4,7 @@ import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { PageNavigationProgress } from '@/components/PageNavigationProgress'
 import { ensureStartsWith } from '@/utilities/ensureStartsWith'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
@@ -75,6 +76,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <Providers>
           {/* <AdminBar /> */}
           <LivePreviewListener />
+          <PageNavigationProgress />
 
           <HeaderTop />
           <Header />

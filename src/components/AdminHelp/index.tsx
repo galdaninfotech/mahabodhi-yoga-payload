@@ -6,6 +6,7 @@ import { HelpCircle, X, Download, GripVertical } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { getHelpFile } from '@/admin/helpConfig'
 import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 import GithubSlugger from 'github-slugger'
 
 const flattenText = (node: React.ReactNode): string => {
@@ -308,6 +309,7 @@ const AdminHelp: React.FC = () => {
                 ) : (
                   <div className="prose-help">
                     <ReactMarkdown
+                      rehypePlugins={[rehypeRaw]}
                       components={{
                         h1: (props) => <HeadingRenderer level={1} {...props} />,
                         h2: (props) => <HeadingRenderer level={2} {...props} />,

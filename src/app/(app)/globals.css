@@ -146,6 +146,28 @@ html[data-theme='light'] {
   opacity: initial;
 }
 
+.page-navigation-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  height: 4px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #fde68a 0%, #f59e0b 45%, #dc2626 100%);
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.55);
+  transition:
+    transform 180ms ease-out,
+    opacity 160ms ease-out;
+}
+
+.page-navigation-progress.is-visible {
+  opacity: 1;
+}
+
 a,
 input,
 button {
