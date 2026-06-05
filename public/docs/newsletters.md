@@ -1,7 +1,8 @@
-# Newsletter Management: The Master Guide
+# Newsletter Management:
 
 This guide provides a comprehensive overview of the Newsletter Management System for the Mahabodhi Yoga Centre. It covers everything from audience management to the technical "engine" that handles your email delivery.
 
+<br />
 <br />
 <br />
 
@@ -110,14 +111,7 @@ Transparency is key to a reliable email system. Every single email attempt is re
 
 <br />
 
-### Understanding System Messages:
-You may occasionally see technical logs from the background process. Here is what they mean:
-*   **"No tasks or workflows with schedules are defined"**: This is a normal message. It simply means there are no "recurring" daily/weekly tasks set up, and the system is proceeding to check for "manual" tasks (like your newsletter).
-*   **"Remaining Jobs: 0"**: This means the current 5-minute batch is finished.
-*   **"Remaining Jobs: [Number]"**: This means there are still emails waiting in the queue to be sent in the next 5-minute cycle.
 
-<br />
-<br />
 
 ## 6. Troubleshooting FAQ
 

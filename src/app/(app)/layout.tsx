@@ -11,6 +11,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import { YogaFestivalPopup } from '@/components/YogaFestivalPopup'
 import React from 'react'
 import './globals.css'
 import Script from 'next/script'
@@ -85,6 +86,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
+          <YogaFestivalPopup />
         </Providers>
 
 
