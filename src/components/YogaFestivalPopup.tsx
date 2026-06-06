@@ -78,7 +78,8 @@ export const YogaFestivalPopup = () => {
                 Join us for an extraordinary journey of mindfulness and wellness in the heart of the Himalayas.
               </p>
               <Link
-                href={'/contact'}
+                href={'https://docs.google.com/forms/d/e/1FAIpQLScMSlsaa0rLxgYCsoK1wnRBLtj6atZbrFQoDsHUg_-3sdsX9A/viewform'}
+                target='_new'
                 className="inline-block bg-[#D2691E] hover:bg-[#8B4513] text-white font-semibold px-8 py-3 rounded-full transition-colors shadow-lg"
               >
                 Learn More
