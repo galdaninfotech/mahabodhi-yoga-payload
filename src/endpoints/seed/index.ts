@@ -1,14 +1,14 @@
 import type { CollectionSlug, Payload, PayloadRequest } from 'payload'
 
+import { seedForms } from './forms'
 import { seedMedia } from './media'
 import { seedUsers } from './users'
-import { seedForms } from './forms'
-import { seedProducts } from './products'
-import { seedPages } from './pages'
+// import { seedProducts } from './products'
 import { seedGlobals } from './globals'
-import { seedNewsletters } from './newsletters'
 import { seedPosts } from './news-posts'
 import { seedPostCategories } from './news-posts/categories'
+import { seedNewsletters } from './newsletters'
+import { seedPages } from './pages'
 
 const collections: CollectionSlug[] = [
   'newsletter-logs',
@@ -17,7 +17,7 @@ const collections: CollectionSlug[] = [
   'newsletters',
   'form-submissions',
   'forms',
-  'products',
+  // 'products',
   'categories',
   'programme-categories',
   'media',
@@ -50,10 +50,10 @@ export const seed = async ({
   
   const { contactForm } = await seedForms({ payload })
   
-  const products = await seedProducts({ 
-    payload, 
-    mediaMap
-  })
+  // const products = await seedProducts({ 
+  //   payload, 
+  //   mediaMap
+  // })
   
   const postCategories = await seedPostCategories({
     payload,

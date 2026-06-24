@@ -40,7 +40,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ slides }) => {
       >
         <CarouselContent className="ml-0">
           {slides.map((slide, index) => (
-            <CarouselItem key={index} className="pl-0 relative h-125 w-full overflow-hidden">
+            <CarouselItem key={index} className="pl-0 relative h-200 w-full overflow-hidden">
               {slide.image && typeof slide.image === 'object' && (
                 <div className="absolute inset-0 z-0">
                   <Media fill imgClassName="object-cover" priority resource={slide.image} />
