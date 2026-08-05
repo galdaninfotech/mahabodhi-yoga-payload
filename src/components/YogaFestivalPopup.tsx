@@ -73,10 +73,6 @@ export const YogaFestivalPopup = () => {
             </div>
             
             <div className="p-6 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Yoga Festival in Ladakh</h2>
-              <p className="text-gray-600 mb-6 font-medium">
-                Join us for an extraordinary journey of mindfulness and wellness in the heart of the Himalayas.
-              </p>
               <Link
                 href={'https://docs.google.com/forms/d/e/1FAIpQLScMSlsaa0rLxgYCsoK1wnRBLtj6atZbrFQoDsHUg_-3sdsX9A/viewform'}
                 target='_new'
