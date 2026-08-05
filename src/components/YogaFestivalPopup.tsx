@@ -51,7 +51,7 @@ export const YogaFestivalPopup = () => {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative max-w-2xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
+            className="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -62,12 +62,12 @@ export const YogaFestivalPopup = () => {
               &times;
             </button>
             
-            <div className="relative aspect-[3/4] sm:aspect-[4/3] w-full bg-gray-100">
+            <div className="relative aspect-video w-full bg-gray-100">
               <Image
-                src="/yoga-festival.jpg"
+                src="/festival.jpg"
                 alt="Yoga Festival in Ladakh"
                 fill
-                className="object-contain sm:object-cover"
+                className="object-contain"
                 priority
               />
             </div>
@@ -80,7 +80,7 @@ export const YogaFestivalPopup = () => {
               <Link
                 href={'https://docs.google.com/forms/d/e/1FAIpQLScMSlsaa0rLxgYCsoK1wnRBLtj6atZbrFQoDsHUg_-3sdsX9A/viewform'}
                 target='_new'
-                className="inline-block bg-[#D2691E] hover:bg-[#8B4513] text-white font-semibold px-8 py-3 rounded-full transition-colors shadow-lg"
+                className="inline-block bg-[#D2691E] hover:bg-[#8B4513] text-white! no-underline! font-semibold px-8 py-3 rounded-full transition-colors shadow-lg"
               >
                 Learn More
               </Link>
